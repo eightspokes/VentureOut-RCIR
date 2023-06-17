@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830502A3DCFF300F50658 /* InputPasswordView.swift */; };
+		309830532A3DDA2900F50658 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830522A3DDA2900F50658 /* ButtonView.swift */; };
+		309830552A3DE0CF00F50658 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830542A3DE0CF00F50658 /* Test.swift */; };
 		30D3A8CD2A3CCF4F0038C8D6 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */; };
 		30D3A8D12A3CCF510038C8D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D3A8D02A3CCF510038C8D6 /* Assets.xcassets */; };
 		30D3A8D42A3CCF510038C8D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D3A8D32A3CCF510038C8D6 /* Preview Assets.xcassets */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		309830502A3DCFF300F50658 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
+		309830522A3DDA2900F50658 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		309830542A3DE0CF00F50658 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		30D3A8C92A3CCF4F0038C8D6 /* VentureOut-RCIR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VentureOut-RCIR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		30D3A8D02A3CCF510038C8D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -176,6 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				30D3A9062A3CFA0C0038C8D6 /* InputTextFieldView.swift */,
+				309830502A3DCFF300F50658 /* InputPasswordView.swift */,
+				309830522A3DDA2900F50658 /* ButtonView.swift */,
+				309830542A3DE0CF00F50658 /* Test.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,9 +335,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */,
 				30D3A9032A3CE3550038C8D6 /* LoginView.swift in Sources */,
 				30D3A90A2A3D154E0038C8D6 /* PreviewLayoutModifier.swift in Sources */,
+				309830552A3DE0CF00F50658 /* Test.swift in Sources */,
 				30D3A8CD2A3CCF4F0038C8D6 /* AppEntry.swift in Sources */,
+				309830532A3DDA2900F50658 /* ButtonView.swift in Sources */,
 				30D3A9072A3CFA0C0038C8D6 /* InputTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
