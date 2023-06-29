@@ -14,7 +14,7 @@ struct ProfileView: View {
             Section{
                 
                 HStack {
-                    Text(User.MOCK_USER.initials)
+                    Text(authViewModel.currentUser?.initials ?? "Not available")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
@@ -22,9 +22,9 @@ struct ProfileView: View {
                         .background(Color(.systemGray3))
                     .clipShape(Circle())
                     VStack(alignment: .leading){
-                        Text(User.MOCK_USER.fullName)
+                        Text(authViewModel.currentUser?.fullName ?? "Name is not available")
                             .bold()
-                        Text(User.MOCK_USER.email)
+                        Text(authViewModel.currentUser?.email ?? "Email not available")
                             .font(.footnote)
                             .accentColor(.gray)
                     }
@@ -43,14 +43,15 @@ struct ProfileView: View {
             
             Section("Account"){
                 Button{
-                    print("Sign out")
+                    authViewModel.signOut()
                 } label: {
-                    SettingsRowView(imageName: "arrow.left.circle.fill", title: "Sign up", tintColor: .red)
+                    SettingsRowView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: .red)
                 }
                 Button{
-                    print("Detlete account")
+                    authViewModel.deleteAccount()
+                    authViewModel.signOut()
                 } label: {
-                    SettingsRowView(imageName: "xmark.circle.fill", title: "Sign up", tintColor: .red)
+                    SettingsRowView(imageName: "xmark.circle.fill", title: "Detlete account", tintColor: .red)
                 }
                 
                

@@ -40,15 +40,39 @@ struct RegistrationView: View {
                     
                     
                     InputPasswordView(password: $password,  placeholder: "Password", sfSymbol: "lock")
-                    InputPasswordView(password: $confirmPassword,  placeholder: "Confirm Password", sfSymbol: "lock")
+                    ZStack(alignment: .trailing){
+                        InputPasswordView(password: $confirmPassword,  placeholder: "Confirm Password", sfSymbol: "lock")
+                        
+                        if !password.isEmpty && !confirmPassword.isEmpty{
+                            if password == confirmPassword && password.count > 5 {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .imageScale(.large)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(.systemGreen))
+                            }else if password == confirmPassword{
+                                Image(systemName: "xmark.circle.fill")
+                                    .imageScale(.large)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(.systemGray))
+                                
+                            } else {
+                                Image(systemName: "xmark.circle.fill")
+                                    .imageScale(.large)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(.systemRed))
+                            }
+                        }
+                    }
                     
                     ButtonView(title: "SIGN UP"){
                         Task{
-                            try await authViewModel.createUser(withEmail: email, password: password)
+                            try await authViewModel.createUser(withEmail: email, password: password, fullName: "\(firstName)  \(secondName)")
                         }
                         
                     }
                     .padding(.vertical)
+                    .disabled(!formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
                     Spacer()
                     
                     Button {
@@ -68,6 +92,18 @@ struct RegistrationView: View {
                 
             }
         }
+}
+
+extension RegistrationView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && confirmPassword == password
+        && !firstName.isEmpty
+        && !secondName.isEmpty
+    }
 }
 
 struct RegistrationView_Previews: PreviewProvider {

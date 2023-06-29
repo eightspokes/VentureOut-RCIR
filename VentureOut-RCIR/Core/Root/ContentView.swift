@@ -13,6 +13,7 @@ struct ContentView: View {
     var body: some View {
         if authViewModel.userSession != nil {
             ProfileView()
+        
         }else{
             LoginView()
         }

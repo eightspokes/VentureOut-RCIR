@@ -53,7 +53,13 @@ struct LoginView: View {
                     
                 }
                 .padding(.vertical)
+                .disabled(!formIsValid)
+                .opacity(formIsValid ? 1.0 : 0.5)
+                
                 Spacer()
+                
+                
+                //SIGN UP button
                 NavigationLink{
                     RegistrationView()
                         .navigationBarBackButtonHidden(true)
@@ -68,6 +74,15 @@ struct LoginView: View {
             .padding(.horizontal)
             
         }
+    }
+}
+
+extension LoginView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
     }
 }
 
