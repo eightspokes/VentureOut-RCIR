@@ -25,10 +25,12 @@ struct ProfileView: View {
                         HStack{
                             Text(authViewModel.currentUser?.fullName ?? "Name is not available")
                                 .bold()
-                            if authViewModel.currentUser?.role == ProfilePrivilege.admin.stringValue(){
-                                Text("(admin)")
-                                    
+                            if let privilege = authViewModel.currentUser?.privilege {
+                                if privilege ==  ProfilePrivilege.admin{
+                                    Text("(admin)")
+                                }
                             }
+                            
                         }
                         
                         Text(authViewModel.currentUser?.email ?? "Email not available")

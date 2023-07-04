@@ -7,12 +7,10 @@
 
 import Foundation
 
-
 struct User: Identifiable, Codable{
     let id: String
     let fullName: String
     let email: String
-    var role: String = "Rower"
     var privilege: ProfilePrivilege = ProfilePrivilege.admin
     
     var initials: String {

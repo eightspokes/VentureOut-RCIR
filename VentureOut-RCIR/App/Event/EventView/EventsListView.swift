@@ -19,25 +19,9 @@ struct EventsListView: View {
     var body: some View {
         NavigationStack {
             ZStack{
-              DynamicBackgroundView()
+            //  DynamicBackgroundView()
                 
                 VStack(spacing: 0){
-                    
-                    
-                   
-                   
-//                    Picker( selection: $userType, label: Text("")) {
-//                        ForEach(Array(ProfilePrivilege.allCases), id: \.self) { privilege in
-//
-//                            let menuText = privilege.stringValue()
-//                            Text("\(menuText)")
-//                                .tag(privilege)
-//                        }
-//                    }
-//                    .pickerStyle(.segmented)
-//                    .padding(.horizontal)
-                    
-                    
                     List {
                         
                         ForEach(myEvents.events.sorted {$0.date < $1.date }) { event in

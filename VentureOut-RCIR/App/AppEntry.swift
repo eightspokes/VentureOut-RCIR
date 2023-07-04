@@ -17,24 +17,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 @main
 struct VentureOut_RCIRApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
- 
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var eventStore = EventStore()
+    @StateObject var slideInMenuService = SlideInMenuService()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+ 
+    
     var body: some Scene {
         WindowGroup {
-            if authViewModel.userSession != nil {
-                EventsCalendarView()
-                    .environmentObject(authViewModel)
-                    .environmentObject(eventStore)
-            
-            }else{
-                LoginView()
-                    .environmentObject(eventStore)
-                    .environmentObject(authViewModel)
-                   
+            Group{
+                if authViewModel.userSession != nil {
+                    EventsCalendarView()
+                }else{
+                    LoginView()
+                }
             }
-                
-        }
+            .environmentObject(authViewModel)
+            .environmentObject(eventStore)
+            .environmentObject(slideInMenuService)
+            
+        } 
     }
 }

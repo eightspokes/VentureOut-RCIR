@@ -27,9 +27,6 @@ struct SettingsRowView: View {
             
            
         }
-     
-        
-        
     }
 }
 

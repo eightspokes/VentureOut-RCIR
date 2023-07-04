@@ -13,10 +13,9 @@ struct InputTextFieldView: View {
     let placeholder: String
     let keyboardType: UIKeyboardType
     let sfSymbol: String?
-    
+  
     private let textFieldLeading: CGFloat = 30
-        
-    
+
     var body: some View {
         TextField(placeholder, text: $text)
             .frame(maxWidth: .infinity, minHeight: 44)
@@ -29,7 +28,6 @@ struct InputTextFieldView: View {
                             .font(.system(size: 16, weight: .semibold))
                             .padding(.leading, 5)
                             .foregroundColor(Color.gray.opacity(0.5))
-  
                     }
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .stroke(Color.gray.opacity(0.25))
@@ -39,8 +37,6 @@ struct InputTextFieldView: View {
 }
 
 struct InputTextFieldView_Previews: PreviewProvider {
-    
-    
     static var previews: some View {
         VStack {
             InputTextFieldView(text: .constant(""), placeholder: "Email", keyboardType: .emailAddress, sfSymbol: "envelope")

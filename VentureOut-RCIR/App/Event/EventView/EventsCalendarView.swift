@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventsCalendarView: View {
     @EnvironmentObject var eventStore: EventStore
+    @EnvironmentObject var slideInMenuService: SlideInMenuService
     @State private var dateSelected: DateComponents?
     @State private var displayEvents: Bool = false
     @State private var formType: EventFormType?
@@ -18,15 +19,34 @@ struct EventsCalendarView: View {
             ScrollView{
                 CalendarView(interval: DateInterval(start:.distantPast, end: .distantFuture), eventStore: eventStore, dateSelected: $dateSelected, displayEvents: $displayEvents)
                     .environmentObject(eventStore)
-            
+                
                 Image("rowers")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200)
-             
-                    
+                
+                
             }
             .toolbar{
+          
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button{
+                        slideInMenuService.toggleMenu()
+                        print("\( slideInMenuService.isPresented)")
+                        
+                    } label: {
+                        Image(systemName: "filemenu.and.selection")
+                            .font(.system(size: 18))
+                    }
+                    
+                    
+//                    .onTapGesture {
+//                        if slideInMenuService.isPresented {
+//                            slideInMenuService.toggleMenu()
+//                        }
+//                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button{
                         formType = .new

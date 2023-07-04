@@ -32,7 +32,7 @@ struct DynamicBackgroundView: View {
     
     var body: some View {
         VStack {
-           
+
             ZStack {
                
                 ForEach(animator.circles) { circle in
@@ -138,7 +138,6 @@ struct DynamicBackgroundView: View {
         }
     }
 }
-
 
 struct DynamicBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
