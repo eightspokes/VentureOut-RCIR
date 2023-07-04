@@ -18,24 +18,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct VentureOut_RCIRApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    //State object for our session service
-    //@StateObject var sessionService = SessionServiceImpl()
+ 
     @StateObject var authViewModel = AuthViewModel()
-    
+    @StateObject var eventStore = EventStore()
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(authViewModel)
-//            NavigationView{
-//                switch sessionService.state{
-//                case .loggedIn:
-//                    HomeView()
-//                        .environmentObject(sessionService)
-//                case .loggedOut:
-//                    LoginView()
-//                }
-//
-//            }
+            if authViewModel.userSession != nil {
+                EventsCalendarView()
+                    .environmentObject(authViewModel)
+                    .environmentObject(eventStore)
+            
+            }else{
+                LoginView()
+                    .environmentObject(eventStore)
+                    .environmentObject(authViewModel)
+                   
+            }
+                
         }
     }
 }

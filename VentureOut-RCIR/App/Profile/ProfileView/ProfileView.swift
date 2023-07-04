@@ -22,8 +22,15 @@ struct ProfileView: View {
                         .background(Color(.systemGray3))
                     .clipShape(Circle())
                     VStack(alignment: .leading){
-                        Text(authViewModel.currentUser?.fullName ?? "Name is not available")
-                            .bold()
+                        HStack{
+                            Text(authViewModel.currentUser?.fullName ?? "Name is not available")
+                                .bold()
+                            if authViewModel.currentUser?.role == ProfilePrivilege.admin.stringValue(){
+                                Text("(admin)")
+                                    
+                            }
+                        }
+                        
                         Text(authViewModel.currentUser?.email ?? "Email not available")
                             .font(.footnote)
                             .accentColor(.gray)
@@ -64,5 +71,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(AuthViewModel())
     }
 }
