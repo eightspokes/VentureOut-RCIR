@@ -15,8 +15,23 @@ struct EventsCalendarView: View {
     @State private var formType: EventFormType?
     
     var body: some View {
-        NavigationStack{
+
+            
             ScrollView{
+                HStack{
+                    Spacer()
+                    Text("Events")
+                        .font(.title)
+                    Spacer()
+                    Button{
+                        formType = .new
+                    }label: {
+                        Image(systemName: "plus.circle.fill")
+                            .imageScale(.large)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top)
                 CalendarView(interval: DateInterval(start:.distantPast, end: .distantFuture), eventStore: eventStore, dateSelected: $dateSelected, displayEvents: $displayEvents)
                     .environmentObject(eventStore)
                 
@@ -27,44 +42,26 @@ struct EventsCalendarView: View {
                 
                 
             }
-            .toolbar{
-          
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button{
-                        slideInMenuService.toggleMenu()
-                        print("\( slideInMenuService.isPresented)")
-                        
-                    } label: {
-                        Image(systemName: "filemenu.and.selection")
-                            .font(.system(size: 18))
-                    }
-                    
-                    
-//                    .onTapGesture {
-//                        if slideInMenuService.isPresented {
-//                            slideInMenuService.toggleMenu()
-//                        }
+//            .toolbar{
+//
+//                ToolbarItem(placement: .navigationBarTrailing){
+//                    Button{
+//                        formType = .new
+//                    }label: {
+//                        Image(systemName: "plus.circle.fill")
+//                            .imageScale(.large)
 //                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button{
-                        formType = .new
-                    }label: {
-                        Image(systemName: "plus.circle.fill")
-                            .imageScale(.large)
-                    }
-                }
-            }
+//                }
+//            }
             .sheet(item: $formType){ $0 }
             .sheet(isPresented: $displayEvents){
                 DaysEventsListView(dateSelected: $dateSelected, privilage: ProfilePrivilege.admin)
                     .presentationDetents([.medium,.large])
             }
-            .navigationTitle("Events")
+           
             
         }
-    }
+    
 }
 
 struct EventCalendarView_Previews: PreviewProvider {

@@ -27,7 +27,7 @@ struct VentureOut_RCIRApp: App {
         WindowGroup {
             Group{
                 if authViewModel.userSession != nil {
-                    EventsCalendarView()
+                    BaseMenuView()
                 }else{
                     LoginView()
                 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300119B62A658A3000677D32 /* ProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300119B52A658A3000677D32 /* ProfilePictureView.swift */; };
 		3012080A2A50BDC5009C9EAC /* EventsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208092A50BDC5009C9EAC /* EventsCalendarView.swift */; };
 		3012080D2A50BEA7009C9EAC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3012080C2A50BEA7009C9EAC /* DateExtension.swift */; };
 		3012080F2A50BEE7009C9EAC /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3012080E2A50BEE7009C9EAC /* EventStore.swift */; };
@@ -23,6 +24,7 @@
 		309830532A3DDA2900F50658 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830522A3DDA2900F50658 /* ButtonView.swift */; };
 		30B896042A54850F00B7685D /* SlideInMenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B896032A54850F00B7685D /* SlideInMenuService.swift */; };
 		30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B896052A54852500B7685D /* SlideInMenuView.swift */; };
+		30B896082A55BDB500B7685D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B896072A55BDB500B7685D /* Test.swift */; };
 		30BADD302A4F897F00014DF2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BADD2F2A4F897F00014DF2 /* Event.swift */; };
 		30C700D92A4A004100FD4ED5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C700D82A4A004100FD4ED5 /* ProfileView.swift */; };
 		30C700DB2A4A1D2500FD4ED5 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C700DA2A4A1D2500FD4ED5 /* SettingsRowView.swift */; };
@@ -42,6 +44,7 @@
 		30C701002A4CB75800FD4ED5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 30C700FF2A4CB75800FD4ED5 /* FirebaseStorage */; };
 		30C701022A4CB75800FD4ED5 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 30C701012A4CB75800FD4ED5 /* FirebaseStorageCombine-Community */; };
 		30C701062A4CF06100FD4ED5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30C701052A4CF06100FD4ED5 /* GoogleService-Info.plist */; };
+		30CC9D0F2A5C75D600CCD505 /* BaseMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CC9D0E2A5C75D600CCD505 /* BaseMenuView.swift */; };
 		30D3A8CD2A3CCF4F0038C8D6 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */; };
 		30D3A8D12A3CCF510038C8D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D3A8D02A3CCF510038C8D6 /* Assets.xcassets */; };
 		30D3A8D42A3CCF510038C8D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D3A8D32A3CCF510038C8D6 /* Preview Assets.xcassets */; };
@@ -73,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		300119B52A658A3000677D32 /* ProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureView.swift; sourceTree = "<group>"; };
 		301208092A50BDC5009C9EAC /* EventsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCalendarView.swift; sourceTree = "<group>"; };
 		3012080C2A50BEA7009C9EAC /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		3012080E2A50BEE7009C9EAC /* EventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
@@ -90,12 +94,14 @@
 		30AEAAFB2A489ADA00BC635C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		30B896032A54850F00B7685D /* SlideInMenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInMenuService.swift; sourceTree = "<group>"; };
 		30B896052A54852500B7685D /* SlideInMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInMenuView.swift; sourceTree = "<group>"; };
+		30B896072A55BDB500B7685D /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		30BADD2F2A4F897F00014DF2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		30C700D82A4A004100FD4ED5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		30C700DA2A4A1D2500FD4ED5 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		30C700DC2A4A372800FD4ED5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		30C700E12A4A43DE00FD4ED5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		30C701052A4CF06100FD4ED5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30CC9D0E2A5C75D600CCD505 /* BaseMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMenuView.swift; sourceTree = "<group>"; };
 		30D3A8C92A3CCF4F0038C8D6 /* VentureOut-RCIR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VentureOut-RCIR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		30D3A8D02A3CCF510038C8D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -320,6 +326,8 @@
 				309830522A3DDA2900F50658 /* ButtonView.swift */,
 				30C700DA2A4A1D2500FD4ED5 /* SettingsRowView.swift */,
 				301208212A50C547009C9EAC /* DynamicBackgroundView.swift */,
+				30B896072A55BDB500B7685D /* Test.swift */,
+				300119B52A658A3000677D32 /* ProfilePictureView.swift */,
 			);
 			path = ViewsComponents;
 			sourceTree = "<group>";
@@ -327,8 +335,9 @@
 		30F8B6322A44957100B761E4 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				30B896022A5484DD00B7685D /* SlideInMenu */,
 				30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */,
+				30CC9D0E2A5C75D600CCD505 /* BaseMenuView.swift */,
+				30B896022A5484DD00B7685D /* SlideInMenu */,
 				30BADD352A4F8A2300014DF2 /* Profile */,
 				30BADD312A4F899600014DF2 /* Event */,
 			);
@@ -515,6 +524,7 @@
 				301208112A50C259009C9EAC /* StartTabView.swift in Sources */,
 				301208262A532BB0009C9EAC /* CalendarView.swift in Sources */,
 				30C700D92A4A004100FD4ED5 /* ProfileView.swift in Sources */,
+				30CC9D0F2A5C75D600CCD505 /* BaseMenuView.swift in Sources */,
 				3012080A2A50BDC5009C9EAC /* EventsCalendarView.swift in Sources */,
 				301208202A50C2BF009C9EAC /* EventFormType.swift in Sources */,
 				3012080D2A50BEA7009C9EAC /* DateExtension.swift in Sources */,
@@ -531,12 +541,14 @@
 				3012081F2A50C2BF009C9EAC /* EventFormView.swift in Sources */,
 				30C700E22A4A43DE00FD4ED5 /* AuthViewModel.swift in Sources */,
 				3012080F2A50BEE7009C9EAC /* EventStore.swift in Sources */,
+				30B896082A55BDB500B7685D /* Test.swift in Sources */,
 				30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */,
 				301208162A50C277009C9EAC /* EventsListView.swift in Sources */,
 				30BADD302A4F897F00014DF2 /* Event.swift in Sources */,
 				301208282A53A348009C9EAC /* DaysEventsListView.swift in Sources */,
 				30D3A9072A3CFA0C0038C8D6 /* InputTextFieldView.swift in Sources */,
 				3012081E2A50C2BF009C9EAC /* EventFormViewModel.swift in Sources */,
+				300119B62A658A3000677D32 /* ProfilePictureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

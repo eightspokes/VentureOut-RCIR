@@ -22,13 +22,20 @@ class AuthViewModel: ObservableObject {
     //It tells us if a user logged in (Login/Profile views )
     @Published var userSession: Firebase.User?
     @Published var currentUser: User?
+    @Published var preview: Bool
  
-    init() {
+    init(preview: Bool = false ) {
         //Store user information on the device
-        self.userSession = Auth.auth().currentUser
-        Task {
-            await fetchUser()
+        self.preview = preview
+        if preview {
+            self.currentUser = User(id: "id", fullName: "Tailor Swift", email: "tailorSwift@gmail.com")
+        } else {
+            self.userSession = Auth.auth().currentUser
+            Task {
+                await fetchUser()
+            }
         }
+        
     }
     
     func signIn(withEmail email: String, password: String) async throws {
