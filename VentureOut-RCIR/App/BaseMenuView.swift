@@ -12,20 +12,15 @@ struct BaseMenuView: View {
     @State var currentTab: String = "Home"
     @EnvironmentObject var authViewModel:  AuthViewModel
     @EnvironmentObject var slideInMenuService:  SlideInMenuService
-    
-    //Offset for Both Drag Gesture and Showing menu
-    @State var offset: CGFloat = 0
-    @State var lastStoredOffset: CGFloat = 0
-    @State var sideBarWidth: CGFloat = 0
-    @State var mainViewopacity = 1.0
+
     
     var body: some View {
         let drag = DragGesture()
             .onEnded {
-                if $0.translation.width < -500{
-                    withAnimation {
+                if $0.translation.width < -50{
+                   withAnimation {
                         slideInMenuService.isPresented = false
-                    }
+                   }
                 }
             }
         
@@ -35,27 +30,26 @@ struct BaseMenuView: View {
                 
                 ZStack(alignment: .leading) {
                     VStack{
-                        
-                        
                         HStack{
                             Button{
-                                withAnimation(.easeIn(duration: 50)) {
+                                withAnimation() {
                                     slideInMenuService.toggleMenu()
-                                    
                                 }
-                                
-   
                             }label:{
                                 ProfilePictureView(image: "Paige")
                             }
-                            Spacer()
-                        }
-                        .padding()
-                        TabView{
                             
+                            Spacer()
+                            Text("Venture Out")
+                                .font(.custom("Sacramento-Regular", size: 25, relativeTo: .title))
+                            
+                        }
+                        .padding(.top)
+                        .padding(.horizontal)
+                        
+                        TabView{
                             EventsCalendarView()
-                                .offset(x: -sideBarWidth )
-                              
+                            
                                 .tabItem {
                                     Label("Calendar", systemImage: "calendar")
                                 }
@@ -74,24 +68,23 @@ struct BaseMenuView: View {
                                 }
                         }
                         .disabled(slideInMenuService.isPresented)
-                   
                     }
                     
-                    .opacity(mainViewopacity)
                     if slideInMenuService.isPresented{
                         SlideInMenuView()
                             .transition(.move(edge: .leading))
                             
                     }
+                    
+                   
+                    
                 }
                 .gesture(drag)
-               
                
             }
         }
     }
 }
-
 
 struct BaseMenuView_Previews: PreviewProvider {
     static var previews: some View {

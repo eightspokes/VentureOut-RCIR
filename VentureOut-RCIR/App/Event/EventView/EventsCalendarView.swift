@@ -18,7 +18,7 @@ struct EventsCalendarView: View {
 
             
             ScrollView{
-                HStack{
+                HStack(spacing: 0){
                     Spacer()
                     Text("Events")
                         .font(.title)
@@ -34,25 +34,16 @@ struct EventsCalendarView: View {
                 .padding(.top)
                 CalendarView(interval: DateInterval(start:.distantPast, end: .distantFuture), eventStore: eventStore, dateSelected: $dateSelected, displayEvents: $displayEvents)
                     .environmentObject(eventStore)
+                    
                 
                 Image("rowers")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200)
+                    .frame(width: 170)
+                    .offset(y: -20)
                 
                 
             }
-//            .toolbar{
-//
-//                ToolbarItem(placement: .navigationBarTrailing){
-//                    Button{
-//                        formType = .new
-//                    }label: {
-//                        Image(systemName: "plus.circle.fill")
-//                            .imageScale(.large)
-//                    }
-//                }
-//            }
             .sheet(item: $formType){ $0 }
             .sheet(isPresented: $displayEvents){
                 DaysEventsListView(dateSelected: $dateSelected, privilage: ProfilePrivilege.admin)

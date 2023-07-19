@@ -9,8 +9,6 @@ import SwiftUI
 
 struct CalendarView: UIViewRepresentable {
     
-    
-    
     let interval: DateInterval
     @ObservedObject var eventStore: EventStore
     @Binding var dateSelected: DateComponents?
@@ -23,17 +21,22 @@ struct CalendarView: UIViewRepresentable {
         view.availableDateRange = interval
         let dateSelection = UICalendarSelectionSingleDate(delegate: context.coordinator)
         view.selectionBehavior = dateSelection
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
         return view
     }
     
     func updateUIView(_ uiView: UICalendarView, context: Context) {
-        if let changedEvent = eventStore.changedEvent {
-            uiView.reloadDecorations(forDateComponents: [changedEvent.dateComponents], animated: true)
-            eventStore.changedEvent = nil
-        }
-        if let movedEvent = eventStore.changedEvent {
-            uiView.reloadDecorations(forDateComponents: [movedEvent.dateComponents], animated: true)
-            eventStore.movedEvent = nil
+        DispatchQueue.main.async {
+            if let changedEvent = eventStore.changedEvent {
+                uiView.reloadDecorations(forDateComponents: [changedEvent.dateComponents], animated: true)
+                eventStore.changedEvent = nil
+            }
+            if let movedEvent = eventStore.movedEvent {
+                uiView.reloadDecorations(forDateComponents: [movedEvent.dateComponents], animated: true)
+                eventStore.movedEvent = nil
+            }
         }
     }
     
@@ -73,7 +76,7 @@ struct CalendarView: UIViewRepresentable {
                 parent.displayEvents.toggle()
             }
         }
-        func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) -> Bool {
+        func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {
             return true
         }
      

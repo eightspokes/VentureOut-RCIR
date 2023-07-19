@@ -21,6 +21,9 @@ class EventStore: ObservableObject {
             // load from your persistence store
         }
     }
+    func clearChangedEvent(){
+        changedEvent = nil
+    }
 
     func delete(_ event: Event) {
         if let index = events.firstIndex(where: {$0.id == event.id}) {
