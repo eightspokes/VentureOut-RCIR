@@ -14,7 +14,7 @@ class EventFormViewModel: ObservableObject {
     @Published var note = ""
     @Published var eventType: Event.EventType = .unspecified
 
-    var id: UUID? // Only exists if we updating
+    var id: String? // Only exists if we updating
     var updating: Bool { id != nil }
     // If we create new Event
     init() {}

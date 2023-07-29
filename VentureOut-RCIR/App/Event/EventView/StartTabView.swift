@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct StartTabView: View {
-    @EnvironmentObject var myEvents: EventStore
+    @EnvironmentObject var myEvents: EventViewModel
     var body: some View {
         TabView{
             EventsCalendarView()
@@ -29,6 +29,6 @@ struct StartTabView: View {
 struct StartTabView_Previews: PreviewProvider {
     static var previews: some View {
         StartTabView()
-            .environmentObject(EventStore(preview: true))
+            .environmentObject(EventViewModel(preview: true))
     }
 }

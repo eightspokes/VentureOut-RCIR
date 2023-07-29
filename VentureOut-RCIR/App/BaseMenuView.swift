@@ -11,7 +11,7 @@ struct BaseMenuView: View {
     @State var showMenu: Bool = false
     @State var currentTab: String = "Home"
     @EnvironmentObject var authViewModel:  AuthViewModel
-    @EnvironmentObject var slideInMenuService:  SlideInMenuService
+    @EnvironmentObject var slideInMenuService:  SlideInMenuViewModel
 
     
     var body: some View {
@@ -48,6 +48,12 @@ struct BaseMenuView: View {
                         .padding(.horizontal)
                         
                         TabView{
+                            EventsListView()
+                                .tabItem {
+                                    Label("Event List", systemImage: "filemenu.and.selection")
+                                }
+                            
+                            
                             EventsCalendarView()
                             
                                 .tabItem {
@@ -90,8 +96,8 @@ struct BaseMenuView_Previews: PreviewProvider {
     static var previews: some View {
         BaseMenuView()
             .environmentObject(AuthViewModel(preview: true))
-            .environmentObject(SlideInMenuService())
-            .environmentObject(EventStore(preview: true))
+            .environmentObject(SlideInMenuViewModel())
+            .environmentObject(EventViewModel(preview: true))
         
             
     }

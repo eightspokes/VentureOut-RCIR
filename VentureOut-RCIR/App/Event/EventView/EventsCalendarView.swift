@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EventsCalendarView: View {
-    @EnvironmentObject var eventStore: EventStore
-    @EnvironmentObject var slideInMenuService: SlideInMenuService
+    @EnvironmentObject var eventStore: EventViewModel
+    @EnvironmentObject var slideInMenuServic: SlideInMenuViewModel
     @State private var dateSelected: DateComponents?
     @State private var displayEvents: Bool = false
     @State private var formType: EventFormType?
@@ -18,6 +18,9 @@ struct EventsCalendarView: View {
 
             
             ScrollView{
+                Text("\(eventStore.events.count)")
+//                Text("\(eventStore.events[eventStore.events.count-1].note)")
+                
                 HStack(spacing: 0){
                     Spacer()
                     Text("Events")
@@ -25,6 +28,7 @@ struct EventsCalendarView: View {
                     Spacer()
                     Button{
                         formType = .new
+                        
                     }label: {
                         Image(systemName: "plus.circle.fill")
                             .imageScale(.large)
@@ -58,6 +62,6 @@ struct EventsCalendarView: View {
 struct EventCalendarView_Previews: PreviewProvider {
     static var previews: some View {
         EventsCalendarView()
-            .environmentObject(EventStore(preview: true))
+            .environmentObject(EventViewModel(preview: true))
     }
 }

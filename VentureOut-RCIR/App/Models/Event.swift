@@ -1,15 +1,20 @@
 import Foundation
 import SwiftUI
+import FirebaseFirestoreSwift
 
-struct Event: Identifiable {
-
+struct Event: Identifiable, Codable {
+    /*
+     The @DocumentID property wrapper will populate its property with the document ID when the document is read from Firestore.
+     */
+    @DocumentID var id: String?
+    
     var eventType: EventType
     var date: Date
     var note: String
     var peopleRegistered: [UUID]
-    var id: UUID
     
-    enum EventType: String, Identifiable, CaseIterable {
+    
+    enum EventType: String, Identifiable, CaseIterable, Codable {
         case rowing, yoga, hike, meeting, unspecified
         var id: String {
             self.rawValue
@@ -38,11 +43,11 @@ struct Event: Identifiable {
         return dateComponents
     }
 
-    init( id: UUID, eventType: EventType = .unspecified, date: Date, note: String) {
+    init( eventType: EventType = .unspecified, date: Date, note: String) {
         self.eventType = eventType
         self.date = date
         self.note = note
-        self.id = id
+        
         peopleRegistered = [UUID]()
     }
 
@@ -51,12 +56,16 @@ struct Event: Identifiable {
         
         let fmt = ISO8601DateFormatter()
         return [
-            Event(id: UUID(), eventType: .meeting, date: fmt.date(from: "2023-07-01T08:00:42+0000")!, note: "Volunteer meeting"),
+            Event(eventType: .meeting, date: fmt.date(from: "2023-07-01T08:00:42+0000")!, note: "Volunteer meeting"),
         
-            Event(id: UUID(), eventType: .hike, date: fmt.date(from: "2023-07-02T08:00:42+0000")!, note: "Hike"),
-            Event(id: UUID(), eventType: .rowing, date: fmt.date(from: "2023-07-03T08:00:42+0000")!, note: "Rowing"),
-            Event(id: UUID(), eventType: .yoga, date: fmt.date(from: "2023-07-04T08:00:42+0000")!, note: "Yoga class"),
-            Event(id: UUID(), eventType: .unspecified, date: fmt.date(from: "2023-07-05T08:00:42+0000")!, note: "Cleaning day")
+            Event(eventType: .hike, date: fmt.date(from: "2023-07-02T08:00:42+0000")!, note: "Hike"),
+           // Event(eventType: .rowing, date: fmt.date(from: "2023-07-03T08:00:42+0000")!, note: "Rowing"),
+//            Event(eventType: .yoga, date: fmt.date(from: "2023-07-04T08:00:42+0000")!, note: "Yoga class"),
+//            Event(eventType: .unspecified, date: fmt.date(from: "2023-07-05T08:00:42+0000")!, note: "Cleaning day")
         ]
     }
+}
+//To be used by Repository to specify collection Name in Firebase
+extension Event {
+  static let collectionName = "events"
 }

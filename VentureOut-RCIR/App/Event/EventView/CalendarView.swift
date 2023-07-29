@@ -10,7 +10,7 @@ import SwiftUI
 struct CalendarView: UIViewRepresentable {
     
     let interval: DateInterval
-    @ObservedObject var eventStore: EventStore
+    @ObservedObject var eventStore: EventViewModel
     @Binding var dateSelected: DateComponents?
     @Binding var displayEvents: Bool
     
@@ -43,10 +43,10 @@ struct CalendarView: UIViewRepresentable {
     class Coordinator: NSObject, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate{
         
         var parent: CalendarView
-        @ObservedObject var eventStore: EventStore
+        @ObservedObject var eventStore: EventViewModel
        
        
-        init(parent: CalendarView, eventStore: ObservedObject<EventStore>){
+        init(parent: CalendarView, eventStore: ObservedObject<EventViewModel>){
             self.parent = parent
             self._eventStore = eventStore
         }

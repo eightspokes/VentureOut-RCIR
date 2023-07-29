@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+
 struct SlideInMenuView: View {
     @EnvironmentObject var authViewModel:  AuthViewModel
-    @EnvironmentObject var slideInMenuService: SlideInMenuService
+    @EnvironmentObject var slideInMenuService: SlideInMenuViewModel
     var body: some View {
         
         GeometryReader { geo in

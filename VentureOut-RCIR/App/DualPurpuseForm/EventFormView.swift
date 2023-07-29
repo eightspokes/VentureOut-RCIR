@@ -11,7 +11,7 @@ import SwiftUI
 
 struct EventFormView: View {
     //Access to eventStore
-    @EnvironmentObject var eventStore: EventStore
+    @EnvironmentObject var eventStore: EventViewModel
     @StateObject var viewModel: EventFormViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState private var focus: Bool?
@@ -36,17 +36,19 @@ struct EventFormView: View {
                         Button {
                             if viewModel.updating {
                                 // update this event
-                                let event = Event(id: viewModel.id!,
+                                let event = Event(
                                                   eventType: viewModel.eventType,
                                                   date: viewModel.date,
                                                   note: viewModel.note)
                                 eventStore.update(event)
                             } else {
                                 // create new event
-                                let newEvent = Event(id: UUID(), eventType: viewModel.eventType,
+                                let newEvent = Event( eventType: viewModel.eventType,
                                                      date: viewModel.date,
                                                      note: viewModel.note)
                                 eventStore.add(newEvent)
+                                print("******* Edding new Element to eventStore ****")
+                                      print(newEvent.note)
                             }
                             dismiss()
                         } label: {
@@ -85,6 +87,6 @@ struct EventFormView: View {
 struct EventFormView_Previews: PreviewProvider {
     static var previews: some View {
         EventFormView(viewModel: EventFormViewModel())
-            .environmentObject(EventStore())
+            .environmentObject(EventViewModel())
     }
 }

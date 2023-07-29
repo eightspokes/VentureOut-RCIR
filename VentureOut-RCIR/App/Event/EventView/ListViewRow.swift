@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct ListViewRow: View {
-    let event: Event
+    @State var event: Event
     @Binding var formType: EventFormType?
     @Binding var userType: ProfilePrivilege
     @State var isPanding: Bool  =  false
+    @State private var showUpdateEvent = false
+    @EnvironmentObject var eventViewModel: EventViewModel
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5 ) {
@@ -13,13 +15,10 @@ struct ListViewRow: View {
                         .font(.system(size: 20))
                     Text(event.note)
                         .font(.title3)
-                    
-                   
                 }
                 Text(
                     event.date.formatted(date: .abbreviated,
                                          time: .shortened)
-                    
                 ).font(.footnote)
                 
                 HStack(spacing: 20){
@@ -27,30 +26,24 @@ struct ListViewRow: View {
                         //.padding(.vertical)
                         .font(.body)
                 }
-                
-                
                 if userType == .admin{
-                    
                     HStack{
                         Button {
                            //
                         } label: {
                             Text("Register ")
                                 .font(.system(size: 15))
-                            
                         }
                         .buttonStyle(.bordered)
-                        
                     }
-                    
                 }
-                
-                
             }
             Spacer()
             if userType == .admin{
                 Button {
-                    formType = .update(event)
+                   // formType = .update(event)
+                    showUpdateEvent = true
+                    
                 } label: {
                     Text("Edit")
                         .font(.system(size: 15))
@@ -70,12 +63,17 @@ struct ListViewRow: View {
             
             
         }
+        .sheet(isPresented: $showUpdateEvent){
+            UpdateEventView(event: $event)
+                .environmentObject(eventViewModel)
+        }
     }
 }
 
  struct ListViewRow_Previews: PreviewProvider {
-     static let event = Event(id: UUID(), eventType: .rowing, date: Date(), note: "Rowing event")
+     static let event = Event(eventType: .rowing, date: Date(), note: "Rowing event")
     static var previews: some View {
-        ListViewRow(event: event, formType: .constant(.new), userType: .constant(.rower))
+        ListViewRow(event: event, formType: .constant(.update(event)), userType: .constant(.admin))
+            .environmentObject(EventViewModel())
     }
  }

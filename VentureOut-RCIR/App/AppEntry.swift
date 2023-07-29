@@ -18,8 +18,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct VentureOut_RCIRApp: App {
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var eventStore = EventStore()
-    @StateObject var slideInMenuService = SlideInMenuService()
+    @StateObject var eventStore = EventViewModel()
+    @StateObject var slideInMenuService = SlideInMenuViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
  
     

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DaysEventsListView: View {
-    @EnvironmentObject var eventStore: EventStore
+    @EnvironmentObject var eventStore: EventViewModel
    // @EnvironmentObject var authViewModel:  AuthViewModel
     
     @Binding var dateSelected: DateComponents?
-    @State  var formType: EventFormType?
+    @State  var formType: EventFormType? //dual purpose view type
     @State  var privilage: ProfilePrivilege
    
     var body: some View {
@@ -52,6 +52,6 @@ struct DaysEventsListView_Previews: PreviewProvider {
     
     static var previews: some View {
         DaysEventsListView(dateSelected: .constant(dateComponents), privilage: ProfilePrivilege.admin)
-            .environmentObject(EventStore(preview: true))
+            .environmentObject(EventViewModel(preview: true))
     }
 }
