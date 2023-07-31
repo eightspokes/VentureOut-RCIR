@@ -11,7 +11,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
-
     return true
   }
 }
@@ -21,8 +20,6 @@ struct VentureOut_RCIRApp: App {
     @StateObject var eventStore = EventViewModel()
     @StateObject var slideInMenuService = SlideInMenuViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
- 
-    
     var body: some Scene {
         WindowGroup {
             Group{
@@ -35,7 +32,6 @@ struct VentureOut_RCIRApp: App {
             .environmentObject(authViewModel)
             .environmentObject(eventStore)
             .environmentObject(slideInMenuService)
-            
         } 
     }
 }

@@ -59,9 +59,9 @@ struct Event: Identifiable, Codable {
             Event(eventType: .meeting, date: fmt.date(from: "2023-07-01T08:00:42+0000")!, note: "Volunteer meeting"),
         
             Event(eventType: .hike, date: fmt.date(from: "2023-07-02T08:00:42+0000")!, note: "Hike"),
-           // Event(eventType: .rowing, date: fmt.date(from: "2023-07-03T08:00:42+0000")!, note: "Rowing"),
-//            Event(eventType: .yoga, date: fmt.date(from: "2023-07-04T08:00:42+0000")!, note: "Yoga class"),
-//            Event(eventType: .unspecified, date: fmt.date(from: "2023-07-05T08:00:42+0000")!, note: "Cleaning day")
+            Event(eventType: .rowing, date: fmt.date(from: "2023-07-03T08:00:42+0000")!, note: "Rowing"),
+            Event(eventType: .yoga, date: fmt.date(from: "2023-07-04T08:00:42+0000")!, note: "Yoga class"),
+            Event(eventType: .unspecified, date: fmt.date(from: "2023-07-05T08:00:42+0000")!, note: "Cleaning day")
         ]
     }
 }

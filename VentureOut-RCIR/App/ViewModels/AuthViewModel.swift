@@ -14,9 +14,6 @@ import FirebaseFirestoreSwift
 protocol AuthenticationFormProtocol{
     var formIsValid: Bool { get }
 }
-
-
-
 @MainActor
 class AuthViewModel: ObservableObject {
     //It tells us if a user logged in (Login/Profile views )
@@ -35,9 +32,7 @@ class AuthViewModel: ObservableObject {
                 await fetchUser()
             }
         }
-        
     }
-    
     func signIn(withEmail email: String, password: String) async throws {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)

@@ -13,7 +13,6 @@ struct BaseMenuView: View {
     @EnvironmentObject var authViewModel:  AuthViewModel
     @EnvironmentObject var slideInMenuService:  SlideInMenuViewModel
 
-    
     var body: some View {
         let drag = DragGesture()
             .onEnded {
@@ -23,7 +22,6 @@ struct BaseMenuView: View {
                    }
                 }
             }
-        
        GeometryReader { geo in
            
             NavigationStack {
@@ -52,8 +50,6 @@ struct BaseMenuView: View {
                                 .tabItem {
                                     Label("Event List", systemImage: "filemenu.and.selection")
                                 }
-                            
-                            
                             EventsCalendarView()
                             
                                 .tabItem {
@@ -81,12 +77,8 @@ struct BaseMenuView: View {
                             .transition(.move(edge: .leading))
                             
                     }
-                    
-                   
-                    
                 }
                 .gesture(drag)
-               
             }
         }
     }
@@ -97,8 +89,6 @@ struct BaseMenuView_Previews: PreviewProvider {
         BaseMenuView()
             .environmentObject(AuthViewModel(preview: true))
             .environmentObject(SlideInMenuViewModel())
-            .environmentObject(EventViewModel(preview: true))
         
-            
     }
 }

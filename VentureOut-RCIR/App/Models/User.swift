@@ -38,8 +38,6 @@ enum ProfilePrivilege: String, CaseIterable, Codable {
         }
     }
 }
-
-
 extension User {
     static var MOCK_USER = User(id: NSUUID().uuidString, fullName: "Roman Kozulia", email: "romanmuni8@gmail.com", privilege: .admin)
 }

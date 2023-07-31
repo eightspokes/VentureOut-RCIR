@@ -4,8 +4,6 @@ struct ListViewRow: View {
     @State var event: Event
     @Binding var formType: EventFormType?
     @Binding var userType: ProfilePrivilege
-    @State var isPanding: Bool  =  false
-    @State private var showUpdateEvent = false
     @EnvironmentObject var eventViewModel: EventViewModel
     var body: some View {
         HStack {
@@ -23,13 +21,13 @@ struct ListViewRow: View {
                 
                 HStack(spacing: 20){
                     Text("Registered \(event.peopleRegistered.count)")
-                        //.padding(.vertical)
+                    //.padding(.vertical)
                         .font(.body)
                 }
                 if userType == .admin{
                     HStack{
                         Button {
-                           //
+                            //
                         } label: {
                             Text("Register ")
                                 .font(.system(size: 15))
@@ -41,39 +39,29 @@ struct ListViewRow: View {
             Spacer()
             if userType == .admin{
                 Button {
-                   // formType = .update(event)
-                    showUpdateEvent = true
-                    
+                    formType = .update(event)
                 } label: {
                     Text("Edit")
                         .font(.system(size: 15))
                 }
                 .buttonStyle(.bordered)
             } else {
-               
+                
                 Button {
-                    isPanding.toggle()
                 } label: {
-                    Text(isPanding ? "Panding" : "Sign up")
+                    Text( "Sign up")
                         .font(.system(size: 15))
                 }
                 .buttonStyle(.bordered)
             }
-            
-            
-            
-        }
-        .sheet(isPresented: $showUpdateEvent){
-            UpdateEventView(event: $event)
-                .environmentObject(eventViewModel)
         }
     }
 }
 
- struct ListViewRow_Previews: PreviewProvider {
-     static let event = Event(eventType: .rowing, date: Date(), note: "Rowing event")
+struct ListViewRow_Previews: PreviewProvider {
+    static let event = Event(eventType: .rowing, date: Date(), note: "Rowing event")
     static var previews: some View {
-        ListViewRow(event: event, formType: .constant(.update(event)), userType: .constant(.admin))
+        ListViewRow(event: event, formType: .constant(.new), userType: .constant(.admin))
             .environmentObject(EventViewModel())
     }
- }
+}

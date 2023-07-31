@@ -13,10 +13,6 @@ struct LoginView: View {
     @EnvironmentObject var authViewModel:  AuthViewModel
 
     var body: some View {
-        
-       
-        
-        
         NavigationStack{
             VStack(spacing: 15){
                 Image("rowers")

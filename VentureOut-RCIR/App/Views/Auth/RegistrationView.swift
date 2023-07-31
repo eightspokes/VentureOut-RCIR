@@ -94,8 +94,6 @@ struct RegistrationView: View {
                     }
                     .padding(.horizontal)
                 }
-                
-                
             }
         }
 }
@@ -111,7 +109,6 @@ extension RegistrationView: AuthenticationFormProtocol {
         && !secondName.isEmpty
     }
 }
-
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationView()

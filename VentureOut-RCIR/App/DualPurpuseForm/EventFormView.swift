@@ -1,30 +1,30 @@
 //
-// Created for UICalendarView_SwiftUI
-// by Stewart Lynch on 2022-06-29
-// Using Swift 5.0
+//  NewEventView.swift
+//  VentureOut-RCIR
 //
-// Follow me on Twitter: @StewartLynch
-// Subscribe on YouTube: https://youTube.com/StewartLynch
+//  Created by Roman on 7/28/23.
 //
 
 import SwiftUI
 
 struct EventFormView: View {
-    //Access to eventStore
     @EnvironmentObject var eventStore: EventViewModel
-    @StateObject var viewModel: EventFormViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState private var focus: Bool?
+    
+    @State public var event: Event
+    @State public var isUpdating: Bool
+    
     var body: some View {
         NavigationStack {
             VStack {
                 Form {
-                    DatePicker(selection: $viewModel.date) {
+                    DatePicker(selection: $event.date) {
                         Text("Date and Time")
                     }
-                    TextField("Note", text: $viewModel.note, axis: .vertical)
+                    TextField("Note", text: $event.note, axis: .vertical)
                         .focused($focus, equals: true)
-                    Picker("Event Type", selection: $viewModel.eventType) {
+                    Picker("Event Type", selection: $event.eventType) {
                         ForEach(Event.EventType.allCases) {eventType in
                             Text(eventType.icon + " " + eventType.rawValue.capitalized)
                                 .tag(eventType)
@@ -34,40 +34,19 @@ struct EventFormView: View {
                                 HStack {
                         Spacer()
                         Button {
-                            if viewModel.updating {
-                                // update this event
-                                let event = Event(
-                                                  eventType: viewModel.eventType,
-                                                  date: viewModel.date,
-                                                  note: viewModel.note)
-                                eventStore.update(event)
-                            } else {
-                                // create new event
-                                let newEvent = Event( eventType: viewModel.eventType,
-                                                     date: viewModel.date,
-                                                     note: viewModel.note)
-                                eventStore.add(newEvent)
-                                print("******* Edding new Element to eventStore ****")
-                                      print(newEvent.note)
-                            }
+                            isUpdating ? eventStore.update(event) : eventStore.add(event)
                             dismiss()
                         } label: {
-                            Text(viewModel.updating ? "Update Event" : "Add Event")
+                            Text("Submit")
                         }
                         .buttonStyle(.borderedProminent)
-                        .disabled(viewModel.incomplete)
+                        .disabled(event.note.isEmpty)
                         Spacer()
                     }
-                    ) {
-                        EmptyView()
-                    }
+                    ){}
                 }
-        
-               
-               
             }
-            
-            .navigationTitle(viewModel.updating ? "Update" : "New Event")
+            .navigationTitle(isUpdating ? "Update Event" : "New Event")
             .onAppear {
                 focus = true
             }
@@ -79,14 +58,16 @@ struct EventFormView: View {
                     }
                 }
             }
-            
         }
     }
 }
 
-struct EventFormView_Previews: PreviewProvider {
+struct NewEventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventFormView(viewModel: EventFormViewModel())
-            .environmentObject(EventViewModel())
+        EventFormView(event: Event(eventType: .hike, date: Date(), note: "This is some funny"), isUpdating: false)
     }
 }
+
+
+
+

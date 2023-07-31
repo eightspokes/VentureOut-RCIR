@@ -15,23 +15,23 @@ struct EventsListView: View {
                     Spacer()
                     Text("Events")
                         .font(.title)
-                        
+                    
                     Spacer()
                     Button{
-                        //formType = .new
-                        showNewEventView = true
+                        formType = .new
+                        // showNewEventView = true
                     }label: {
                         Image(systemName: "plus.circle.fill")
                             .imageScale(.large)
                             .padding(.trailing)
                     }
                     
-                 
+                    
                     
                 }
                 
                 List {
-
+                    
                     ForEach(eventViewModel.events.sorted {$0.date < $1.date }) { event in
                         ListViewRow(event: event, formType: $formType, userType: $userType)
                             .swipeActions {
@@ -45,8 +45,10 @@ struct EventsListView: View {
                 }
                 .foregroundColor(.indigo)
                 .font(.title2)
-                .sheet(isPresented: $showNewEventView){
-                    NewEventView()
+                
+                .sheet(item: $formType){ formType in
+                    formType
+                    
                 }
             }
         }

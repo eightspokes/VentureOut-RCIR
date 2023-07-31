@@ -15,9 +15,9 @@ enum EventFormType: Identifiable, View {
     var body: some View {
         switch self {
         case .new:
-            return EventFormView(viewModel: EventFormViewModel())
+            return EventFormView(event: Event(date: Date(), note: ""),isUpdating: false)
         case .update(let event):
-            return EventFormView(viewModel: EventFormViewModel(event))
+            return EventFormView(event: event,isUpdating: true)
         }
     }
 }

@@ -12,7 +12,6 @@ struct ProfileView: View {
     var body: some View {
         List{
             Section{
-                
                 HStack {
                     Text(authViewModel.currentUser?.initials ?? "Not available")
                         .font(.title3)
@@ -32,7 +31,6 @@ struct ProfileView: View {
                             }
                             
                         }
-                        
                         Text(authViewModel.currentUser?.email ?? "Email not available")
                             .font(.footnote)
                             .accentColor(.gray)
@@ -48,8 +46,6 @@ struct ProfileView: View {
                 }
                 
             }
-            
-            
             Section("Account"){
                 Button{
                     authViewModel.signOut()

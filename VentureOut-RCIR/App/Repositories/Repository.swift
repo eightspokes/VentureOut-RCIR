@@ -14,7 +14,6 @@ public class EventRepository: ObservableObject {
     /*
      Snapshot listener that subscribes to the Firestore collection that contains the events
      */
-   
     private var listenerRegistration: ListenerRegistration?
     init() {
         subscribe()
@@ -29,9 +28,7 @@ public class EventRepository: ObservableObject {
         }
     }
     func subscribe(){
-        
         if listenerRegistration == nil {
-            
             /*
              Set up a Firestore query for fetching all events from the events collection.
              */
@@ -48,7 +45,6 @@ public class EventRepository: ObservableObject {
                         print("No documents")
                         return
                     }
-                    print("Mapping \(documents.count) documents")
                     self?.events = documents.compactMap { queryDocumentSnapshot in
                         do {
                             return try queryDocumentSnapshot.data(as: Event.self)
@@ -60,21 +56,17 @@ public class EventRepository: ObservableObject {
                     }
                 }
         }
-        
     }
-    
     func addEvent(_ event: Event) throws {
-        print("1******Called add event from reminder repository")
         try Firestore
              .firestore()
              .collection(Event.collectionName)
              .addDocument(from: event)
-        print("2******Event should have been added")
     }
     func updateEvent(_ event: Event) throws {
-        print("***** This is my event I am passing in \(event.note) \(event.id ?? "No Id")")
         guard let documentId = event.id else{
             fatalError("Event \(event.note) has no document ID.")
+           
         }
         try Firestore
              .firestore()
