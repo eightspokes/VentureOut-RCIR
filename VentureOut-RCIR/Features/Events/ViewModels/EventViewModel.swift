@@ -2,6 +2,7 @@
 
 import Foundation
 import Combine
+import Factory
 
 @MainActor
 class EventViewModel: ObservableObject {
@@ -11,7 +12,10 @@ class EventViewModel: ObservableObject {
     @Published var changedEvent: Event?
     @Published var movedEvent: Event?
     @Published var errorMessage: String?
-    private var eventsRepository: EventRepository =  EventRepository()
+    
+    // MARK: - Dependencies
+    @Injected(\.eventRepository)
+    private var eventsRepository: EventRepository
     
     init(preview: Bool = false) {
         self.preview = preview

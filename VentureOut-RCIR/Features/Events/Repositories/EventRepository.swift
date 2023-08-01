@@ -6,10 +6,16 @@
 //
 
 import Foundation
+import Factory
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 public class EventRepository: ObservableObject {
+    
+    // MARK: - Dependencies
+    @Injected(\.firestore) var firestore
+    @Injected(\.auth) var auth
+    
     @Published var events = [Event]()
     /*
      Snapshot listener that subscribes to the Firestore collection that contains the events
@@ -32,7 +38,7 @@ public class EventRepository: ObservableObject {
             /*
              Set up a Firestore query for fetching all events from the events collection.
              */
-            let query = Firestore.firestore().collection(Event.collectionName)
+            let query = firestore.collection(Event.collectionName)
             self.listenerRegistration = query as? any ListenerRegistration
             /*
              This listener will be called whenever the data returned by the query changes: e.g. when a new document is added, data in a document is changed, or a document is deleted.
@@ -58,8 +64,7 @@ public class EventRepository: ObservableObject {
         }
     }
     func addEvent(_ event: Event) throws {
-        try Firestore
-             .firestore()
+        try firestore
              .collection(Event.collectionName)
              .addDocument(from: event)
     }
@@ -68,8 +73,7 @@ public class EventRepository: ObservableObject {
             fatalError("Event \(event.note) has no document ID.")
            
         }
-        try Firestore
-             .firestore()
+        try firestore
              .collection(Event.collectionName)
              .document(documentId)
              .setData(from: event, merge: true)
@@ -78,10 +82,13 @@ public class EventRepository: ObservableObject {
         guard let documentId = event.id else {
             fatalError("Event \(event.note) has no document ID.")
         }
-            Firestore
-              .firestore()
+             firestore
               .collection(Event.collectionName)
               .document(documentId)
               .delete()
-    } 
+    }
+    
+    func registerMyselfForEvent(_ event: Event){
+        
+    }
 }
