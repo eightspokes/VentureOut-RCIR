@@ -12,6 +12,7 @@ struct User: Identifiable, Codable{
     let fullName: String
     let email: String
     var privilege: ProfilePrivilege = ProfilePrivilege.admin
+    var eventRegistrations = [String]()
     
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
@@ -40,4 +41,7 @@ enum ProfilePrivilege: String, CaseIterable, Codable {
 }
 extension User {
     static var MOCK_USER = User(id: NSUUID().uuidString, fullName: "Roman Kozulia", email: "romanmuni8@gmail.com", privilege: .admin)
+}
+extension User {
+  static let collectionName = "users"
 }

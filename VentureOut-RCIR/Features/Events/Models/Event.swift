@@ -1,6 +1,8 @@
 import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
+import FirebaseFirestore
+import Firebase
 
 struct Event: Identifiable, Codable {
     /*
@@ -11,14 +13,15 @@ struct Event: Identifiable, Codable {
     var eventType: EventType
     var date: Date
     var note: String
-    var peopleRegistered: [UUID]
+    var eventRegistrations = [String]()
+    
     
     
     enum EventType: String, Identifiable, CaseIterable, Codable {
         case rowing, yoga, hike, meeting, unspecified
         var id: String {
             self.rawValue
-        }
+    }
 
         var icon: String {
             switch self {
@@ -48,7 +51,7 @@ struct Event: Identifiable, Codable {
         self.date = date
         self.note = note
         
-        peopleRegistered = [UUID]()
+
     }
 
     // Data to be used in the preview

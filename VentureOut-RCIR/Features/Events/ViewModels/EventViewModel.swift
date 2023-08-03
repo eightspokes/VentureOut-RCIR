@@ -7,7 +7,7 @@ import Factory
 @MainActor
 class EventViewModel: ObservableObject {
     @Published var events = [Event]()
-    
+    @Published var eventResistrations = [EventRegistration]()
     @Published var preview: Bool
     @Published var changedEvent: Event?
     @Published var movedEvent: Event?
@@ -34,8 +34,6 @@ class EventViewModel: ObservableObject {
               .assign(to: &$events)
             
         }
-        print("!!!!!!!!!!!This is my EventRepo \(eventsRepository.events.count)")
-        print("!!!!!!!!!!!This is my LocalRepo \(self.events.count)")
     }
     func clearChangedEvent(){
         changedEvent = nil
@@ -48,13 +46,7 @@ class EventViewModel: ObservableObject {
             }
         }else{
             eventsRepository.removeEvent(event)
-        }
-        
-        
-        
-        
-        
-        
+        }  
     }
 
     func add(_ event: Event) {
@@ -63,10 +55,9 @@ class EventViewModel: ObservableObject {
             print( "appending events in preview")
         }else{
             do {
-                print("1 ***Callding add event from Event View Model")
+                
                   try eventsRepository.addEvent(event)
                   errorMessage = nil
-                print("2 ***Callding add event from Event View Model")
                 }
                 catch {
                   print(error)
@@ -87,6 +78,10 @@ class EventViewModel: ObservableObject {
               print(error)
               errorMessage = error.localizedDescription
             }
+    }
+    func addEventRegistration(event:Event, user: User){
+        print("Adding new user to Registration")
+        eventsRepository.updateEventRegistration(event: event, user: user)
     }
 
 }

@@ -27,7 +27,10 @@
 		30B30B192A79A95A00CB6D80 /* EventRepository+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B182A79A95A00CB6D80 /* EventRepository+Injection.swift */; };
 		30B30B1B2A79B37500CB6D80 /* EventRegistrationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B1A2A79B37500CB6D80 /* EventRegistrationForm.swift */; };
 		30B30B1D2A79BB3800CB6D80 /* EventDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B1C2A79BB3800CB6D80 /* EventDateView.swift */; };
-		30B30B1F2A79BE7900CB6D80 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B1E2A79BE7900CB6D80 /* Registration.swift */; };
+		30B30B212A7ABBC300CB6D80 /* EventRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B202A7ABBC300CB6D80 /* EventRegistration.swift */; };
+		30B30B282A7AF13C00CB6D80 /* EventRegistrationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B272A7AF13C00CB6D80 /* EventRegistrationRepository.swift */; };
+		30B30B2A2A7AF58200CB6D80 /* EventRegistrationRepository+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B292A7AF58200CB6D80 /* EventRegistrationRepository+Injection.swift */; };
+		30B30B2C2A7AF5B900CB6D80 /* EventRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B2B2A7AF5B900CB6D80 /* EventRegistrationViewModel.swift */; };
 		30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B896052A54852500B7685D /* SlideInMenuView.swift */; };
 		30B896082A55BDB500B7685D /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B896072A55BDB500B7685D /* Test.swift */; };
 		30BADD302A4F897F00014DF2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BADD2F2A4F897F00014DF2 /* Event.swift */; };
@@ -102,7 +105,10 @@
 		30B30B182A79A95A00CB6D80 /* EventRepository+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventRepository+Injection.swift"; sourceTree = "<group>"; };
 		30B30B1A2A79B37500CB6D80 /* EventRegistrationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistrationForm.swift; sourceTree = "<group>"; };
 		30B30B1C2A79BB3800CB6D80 /* EventDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDateView.swift; sourceTree = "<group>"; };
-		30B30B1E2A79BE7900CB6D80 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		30B30B202A7ABBC300CB6D80 /* EventRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistration.swift; sourceTree = "<group>"; };
+		30B30B272A7AF13C00CB6D80 /* EventRegistrationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistrationRepository.swift; sourceTree = "<group>"; };
+		30B30B292A7AF58200CB6D80 /* EventRegistrationRepository+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventRegistrationRepository+Injection.swift"; sourceTree = "<group>"; };
+		30B30B2B2A7AF5B900CB6D80 /* EventRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistrationViewModel.swift; sourceTree = "<group>"; };
 		30B896052A54852500B7685D /* SlideInMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInMenuView.swift; sourceTree = "<group>"; };
 		30B896072A55BDB500B7685D /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		30BADD2F2A4F897F00014DF2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -258,7 +264,6 @@
 				301208142A50C277009C9EAC /* EventsListView.swift */,
 				301208102A50C259009C9EAC /* StartTabView.swift */,
 				301208272A53A348009C9EAC /* DaysEventsListView.swift */,
-				30B30B1A2A79B37500CB6D80 /* EventRegistrationForm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				30BADD2F2A4F897F00014DF2 /* Event.swift */,
-				30B30B1E2A79BE7900CB6D80 /* Registration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +331,50 @@
 				30C700DC2A4A372800FD4ED5 /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		30B30B222A7AC9BF00CB6D80 /* EventRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				30B30B262A7AF11B00CB6D80 /* Repository */,
+				30B30B232A7AC9D500CB6D80 /* Views */,
+				30B30B242A7AC9DC00CB6D80 /* ViewModels */,
+				30B30B252A7AC9E800CB6D80 /* Models */,
+			);
+			path = EventRegistration;
+			sourceTree = "<group>";
+		};
+		30B30B232A7AC9D500CB6D80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30B30B1A2A79B37500CB6D80 /* EventRegistrationForm.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		30B30B242A7AC9DC00CB6D80 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				30B30B2B2A7AF5B900CB6D80 /* EventRegistrationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		30B30B252A7AC9E800CB6D80 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				30B30B202A7ABBC300CB6D80 /* EventRegistration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		30B30B262A7AF11B00CB6D80 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				30B30B272A7AF13C00CB6D80 /* EventRegistrationRepository.swift */,
+				30B30B292A7AF58200CB6D80 /* EventRegistrationRepository+Injection.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		30D3A8C02A3CCF4F0038C8D6 = {
@@ -412,6 +460,7 @@
 			children = (
 				30B30B0B2A79960100CB6D80 /* Authentication */,
 				30B30B0C2A79960B00CB6D80 /* Events */,
+				30B30B222A7AC9BF00CB6D80 /* EventRegistration */,
 				30B30B0D2A79961900CB6D80 /* Profile */,
 				30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */,
 				30CC9D0E2A5C75D600CCD505 /* BaseMenuView.swift */,
@@ -580,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */,
+				30B30B2C2A7AF5B900CB6D80 /* EventRegistrationViewModel.swift in Sources */,
 				301208112A50C259009C9EAC /* StartTabView.swift in Sources */,
 				301208262A532BB0009C9EAC /* CalendarView.swift in Sources */,
 				30C700D92A4A004100FD4ED5 /* ProfileView.swift in Sources */,
@@ -590,14 +640,17 @@
 				30CED5372A7488A400141DA0 /* EventFormView.swift in Sources */,
 				301208202A50C2BF009C9EAC /* EventFormType.swift in Sources */,
 				3012080D2A50BEA7009C9EAC /* DateExtension.swift in Sources */,
+				30B30B282A7AF13C00CB6D80 /* EventRegistrationRepository.swift in Sources */,
 				30DCBFCB2A48C94500F1D621 /* RegistrationView.swift in Sources */,
 				30F8B63C2A4496DA00B761E4 /* LoginView.swift in Sources */,
 				30D3A8CD2A3CCF4F0038C8D6 /* AppEntry.swift in Sources */,
 				30C700DB2A4A1D2500FD4ED5 /* SettingsRowView.swift in Sources */,
 				30C700DD2A4A372800FD4ED5 /* User.swift in Sources */,
+				30B30B2A2A7AF58200CB6D80 /* EventRegistrationRepository+Injection.swift in Sources */,
 				30F8B63F2A44C19F00B761E4 /* PreviewLayoutModifier.swift in Sources */,
 				30B30B1D2A79BB3800CB6D80 /* EventDateView.swift in Sources */,
 				301208222A50C547009C9EAC /* DynamicBackgroundView.swift in Sources */,
+				30B30B212A7ABBC300CB6D80 /* EventRegistration.swift in Sources */,
 				309830532A3DDA2900F50658 /* ButtonView.swift in Sources */,
 				3007E5932A71974800BF568C /* EventRepository.swift in Sources */,
 				301208152A50C277009C9EAC /* ListViewRow.swift in Sources */,
@@ -607,7 +660,6 @@
 				30B30B192A79A95A00CB6D80 /* EventRepository+Injection.swift in Sources */,
 				30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */,
 				301208162A50C277009C9EAC /* EventsListView.swift in Sources */,
-				30B30B1F2A79BE7900CB6D80 /* Registration.swift in Sources */,
 				30BADD302A4F897F00014DF2 /* Event.swift in Sources */,
 				301208282A53A348009C9EAC /* DaysEventsListView.swift in Sources */,
 				30D3A9072A3CFA0C0038C8D6 /* InputTextFieldView.swift in Sources */,

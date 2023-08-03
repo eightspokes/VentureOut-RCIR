@@ -5,6 +5,7 @@ struct ListViewRow: View {
     @Binding var formType: EventFormType?
     @Binding var userType: ProfilePrivilege
     @EnvironmentObject var eventViewModel: EventViewModel
+    @State var showEventRegistrationForm = false
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5 ) {
@@ -20,14 +21,14 @@ struct ListViewRow: View {
                 ).font(.footnote)
                 
                 HStack(spacing: 20){
-                    Text("Registered \(event.peopleRegistered.count)")
+                    Text("Registered \(event.eventRegistrations.count)")
                     //.padding(.vertical)
                         .font(.body)
                 }
                 if userType == .admin{
                     HStack{
                         Button {
-                            //
+                            showEventRegistrationForm = true
                         } label: {
                             Text("Register ")
                                 .font(.system(size: 15))
@@ -55,7 +56,11 @@ struct ListViewRow: View {
                 .buttonStyle(.bordered)
             }
         }
+        .sheet(isPresented: $showEventRegistrationForm){
+            EventRegistrationForm(event: event)
+        }
     }
+    
 }
 
 struct ListViewRow_Previews: PreviewProvider {

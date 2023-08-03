@@ -18,6 +18,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct VentureOut_RCIRApp: App {
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var eventStore = EventViewModel()
+    @StateObject var eventRegistrationViewModel = EventRegistrationViewModel()
+    
     @StateObject var slideInMenuService = SlideInMenuViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
@@ -32,6 +34,7 @@ struct VentureOut_RCIRApp: App {
             .environmentObject(authViewModel)
             .environmentObject(eventStore)
             .environmentObject(slideInMenuService)
+            .environmentObject(eventRegistrationViewModel)
         } 
     }
 }
