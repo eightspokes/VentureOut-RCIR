@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EventsCalendarView: View {
-    @EnvironmentObject var eventStore: EventViewModel
-    @EnvironmentObject var slideInMenuServic: SlideInMenuViewModel
+    @EnvironmentObject var eventViewModel: EventViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State private var dateSelected: DateComponents?
     @State private var displayEvents: Bool = false
     @State private var formType: EventFormType?
@@ -34,8 +34,9 @@ struct EventsCalendarView: View {
             }
             .padding(.horizontal)
             .padding(.top)
-            CalendarView(interval: DateInterval(start:.distantPast, end: .distantFuture), eventStore: eventStore, dateSelected: $dateSelected, displayEvents: $displayEvents)
-                .environmentObject(eventStore)
+            CalendarView(interval: DateInterval(start:.distantPast, end: .distantFuture), eventViweModel: eventViewModel,  authViewModel: authViewModel, dateSelected: $dateSelected, displayEvents: $displayEvents)
+            
+              
             
             
             Image("rowers")
@@ -48,7 +49,7 @@ struct EventsCalendarView: View {
         }
         .sheet(item: $formType){ $0 }
         .sheet(isPresented: $displayEvents){
-            DaysEventsListView(dateSelected: $dateSelected, privilage: ProfilePrivilege.admin)
+            DaysEventsListView(eventStore: eventViewModel, dateSelected: $dateSelected, privilage: ProfilePrivilege.admin)
                 .presentationDetents([.medium,.large])
         }
         

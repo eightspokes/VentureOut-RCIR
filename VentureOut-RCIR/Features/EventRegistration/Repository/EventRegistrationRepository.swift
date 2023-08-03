@@ -65,6 +65,10 @@ public class EventRegistrationRepository: ObservableObject {
         }
     }
     func addEventRegistration(_ eventRegistration: EventRegistration) throws {
+        
+        
+        
+        
          print("***Called event registration")
         let collectionRef = firestore.collection(EventRegistration.collectionName)
         

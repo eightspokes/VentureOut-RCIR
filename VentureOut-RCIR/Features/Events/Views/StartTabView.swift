@@ -29,6 +29,6 @@ struct StartTabView: View {
 struct StartTabView_Previews: PreviewProvider {
     static var previews: some View {
         StartTabView()
-            .environmentObject(EventViewModel(preview: true))
+             .environmentObject(EventViewModel(preview: true))
     }
 }

@@ -56,8 +56,30 @@ class EventRegistrationViewModel: ObservableObject {
         }
 
     }
+    
+    func isRegistered(_ user: User, for event: Event) -> Bool{
+        print("These are my event registrations \(eventRegistrations)")
+        //Check if user is already registered for event
+        for eventRegistration in eventRegistrations {
+            if eventRegistration.eventId == event.id && eventRegistration.userId == user.id{
+                print("You are already registred for this event!")
+                return true
+            }
+        }
+        return false
+    }
+    
+    
 
     func add(event: Event, user: User, noteToAdmin: String) {
+        
+        if isRegistered(user, for: event){
+            return
+        }
+        
+        
+        
+        
         guard let eventId = event.id else {
             print("Error adding new registration, event does not have an ID")
             return
@@ -79,12 +101,6 @@ class EventRegistrationViewModel: ObservableObject {
                   errorMessage = error.localizedDescription
                 }
             changedEventRegistration = eventRegistration
-            // add eventRegistration references to the User and Event
-            
-      
-            
-            
-          //  print("########This is newEventRegistrationID \(eventRegistration.id ?? "NO id available ")")
         }
         
         

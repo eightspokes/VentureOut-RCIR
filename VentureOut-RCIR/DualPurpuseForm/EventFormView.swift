@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventFormView: View {
-    @EnvironmentObject var eventStore: EventViewModel
+    @EnvironmentObject var eventViewModel: EventViewModel
     @Environment(\.dismiss) var dismiss
     @FocusState private var focus: Bool?
     
@@ -34,7 +34,7 @@ struct EventFormView: View {
                                 HStack {
                         Spacer()
                         Button {
-                            isUpdating ? eventStore.update(event) : eventStore.add(event)
+                            isUpdating ? eventViewModel.update(event) : eventViewModel.add(event)
                             dismiss()
                         } label: {
                             Text("Submit")
@@ -64,7 +64,7 @@ struct EventFormView: View {
 
 struct NewEventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventFormView(event: Event(eventType: .hike, date: Date(), note: "This is some funny"), isUpdating: false)
+        EventFormView(event: Event(eventType: .hike, date: Date(), note: "This is some funny note"), isUpdating: false)
     }
 }
 

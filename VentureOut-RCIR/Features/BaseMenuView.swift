@@ -12,7 +12,7 @@ struct BaseMenuView: View {
     @State var currentTab: String = "Home"
     @EnvironmentObject var authViewModel:  AuthViewModel
     @EnvironmentObject var slideInMenuService:  SlideInMenuViewModel
-
+    @EnvironmentObject var eventViewModel: EventViewModel
     var body: some View {
         let drag = DragGesture()
             .onEnded {

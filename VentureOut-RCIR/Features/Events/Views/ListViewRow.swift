@@ -2,10 +2,17 @@ import SwiftUI
 
 struct ListViewRow: View {
     @State var event: Event
+    
     @Binding var formType: EventFormType?
     @Binding var userType: ProfilePrivilege
+    
     @EnvironmentObject var eventViewModel: EventViewModel
+    @EnvironmentObject var eventRegistrationViewModel: EventRegistrationViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     @State var showEventRegistrationForm = false
+    @State private var showingYouAreRegisteredAlert = false
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5 ) {
@@ -28,12 +35,21 @@ struct ListViewRow: View {
                 if userType == .admin{
                     HStack{
                         Button {
-                            showEventRegistrationForm = true
+                            guard let user = authViewModel.currentUser else{
+                                return
+                            }
+                            if eventRegistrationViewModel.isRegistered(user, for: event){
+                                showingYouAreRegisteredAlert = true
+                            }else{
+                                showEventRegistrationForm = true
+                            }
+                            
                         } label: {
                             Text("Register ")
                                 .font(.system(size: 15))
                         }
                         .buttonStyle(.bordered)
+                        
                     }
                 }
             }
@@ -58,6 +74,9 @@ struct ListViewRow: View {
         }
         .sheet(isPresented: $showEventRegistrationForm){
             EventRegistrationForm(event: event)
+        }
+        .alert("You are already registered for this event", isPresented: $showingYouAreRegisteredAlert) {
+            Button("OK", role: .cancel) { }
         }
     }
     

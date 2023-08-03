@@ -58,6 +58,6 @@ struct EventsListView: View {
 struct EventsListView_Previews: PreviewProvider {
     static var previews: some View {
         EventsListView()
-            .environmentObject(EventViewModel(preview: true))
+           .environmentObject(EventViewModel(preview: true))
     }
 }
