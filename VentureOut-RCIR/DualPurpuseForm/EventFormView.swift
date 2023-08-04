@@ -65,6 +65,7 @@ struct EventFormView: View {
 struct NewEventView_Previews: PreviewProvider {
     static var previews: some View {
         EventFormView(event: Event(eventType: .hike, date: Date(), note: "This is some funny note"), isUpdating: false)
+            .environmentObject(EventViewModel(preview: true))
     }
 }
 

@@ -15,18 +15,21 @@ import Factory
 class EventRegistrationViewModel: ObservableObject {
     @Published var eventRegistrations = [EventRegistration]()
     @Published var preview: Bool
-    @Published var changedEventRegistration: EventRegistration?
-    @Published var movedEvent: EventRegistration?
+    @Published var changedEvent: Event?
+    @Published var movedEvent: Event?
     @Published var errorMessage: String?
     
+ 
     // MARK: - Dependencies
     @Injected(\.eventRegistrationRepository) private var eventRegistrationRepository: EventRegistrationRepository
     @Injected(\.auth) private var auth
     @Injected(\.firestore) private var firestore
     
     init(preview: Bool = false) {
+       
         self.preview = preview
         fetchEvents()
+        print("These are my event registrations in EventRegistrationViewMOdel: \(eventRegistrations.count)")
         
     }
    
@@ -42,14 +45,14 @@ class EventRegistrationViewModel: ObservableObject {
             
         }
     }
-    func clearChangedEvent(){
-        changedEventRegistration = nil
+    func clearChangedEventRegistration(){
+        changedEvent = nil
     }
 
     func delete(_ eventRegistration: EventRegistration) {
         if preview{
             if let index = eventRegistrations.firstIndex(where: {$0.id == eventRegistration.id}) {
-                changedEventRegistration = eventRegistrations.remove(at: index)
+                 eventRegistrations.remove(at: index)
             }
         }else{
             eventRegistrationRepository.removeEventRegistration(eventRegistration)
@@ -58,8 +61,7 @@ class EventRegistrationViewModel: ObservableObject {
     }
     
     func isRegistered(_ user: User, for event: Event) -> Bool{
-        print("These are my event registrations \(eventRegistrations)")
-        //Check if user is already registered for event
+        
         for eventRegistration in eventRegistrations {
             if eventRegistration.eventId == event.id && eventRegistration.userId == user.id{
                 print("You are already registred for this event!")
@@ -76,10 +78,7 @@ class EventRegistrationViewModel: ObservableObject {
         if isRegistered(user, for: event){
             return
         }
-        
-        
-        
-        
+
         guard let eventId = event.id else {
             print("Error adding new registration, event does not have an ID")
             return
@@ -93,14 +92,17 @@ class EventRegistrationViewModel: ObservableObject {
             print( "appending events in preview")
         }else{
             do {
+                
                 try eventRegistrationRepository.addEventRegistration(eventRegistration)
                   errorMessage = nil
+                  changedEvent = event
+                
                 }
                 catch {
                   print(error)
                   errorMessage = error.localizedDescription
                 }
-            changedEventRegistration = eventRegistration
+        
         }
         
         
@@ -111,7 +113,11 @@ class EventRegistrationViewModel: ObservableObject {
     func update(_ eventRegistration: EventRegistration) {
         print("Update event called")
         do {
+        //TODO: Handle changed event functionality
+            //changedEvent = eventRegistration
             try eventRegistrationRepository.updateEventRegistration(eventRegistration)
+           // movedEvent = event
+            
             }
             catch {
               print(error)

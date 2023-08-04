@@ -42,13 +42,8 @@ public class EventRepository: ObservableObject {
           .addSnapshotListener { [weak self] (querySnapshot, error) in
             
             guard let documents = querySnapshot?.documents else {
-              print("No documents")
               return
             }
-
-
-            print("Mapping \(documents.count) documents")
-              print("\(self!.events.count)")
               self?.events = documents.compactMap { queryDocumentSnapshot in
               do {
                 return try queryDocumentSnapshot.data(as: Event.self)
@@ -75,7 +70,7 @@ public class EventRepository: ObservableObject {
             .document(documentId)
             .setData(from: event, merge: true)
     }
-    func removeEvent(_ event: Event){
+    func removeEvent(_ event: Event) -> Event {
         guard let documentId = event.id else {
             fatalError("Event \(event.note) has no document ID.")
         }
@@ -83,12 +78,12 @@ public class EventRepository: ObservableObject {
             .collection(Event.collectionName)
             .document(documentId)
             .delete()
+        return event 
     }
     
     func updateEventRegistration(event: Event, user: User){
         let userID = user.id
         let eventID = event.id
-        print("*********** This is my event id \(event.id), User ID: \(user.id)")
         // Get a reference to the user document
         //We assume that user always have id's assigned by firebase
         let eventRef = firestore.collection("events").document(eventID!)
@@ -98,14 +93,14 @@ public class EventRepository: ObservableObject {
             if let error = error {
                 print("Error adding new person to peopleRegistered: \(error)")
             } else {
-                print("New person added to peopleRegistered successfully!")
+                //print("New person added to peopleRegistered successfully!")
             }
         }
         userRef.updateData(["eventsRegistered": FieldValue.arrayUnion([eventID!])]) { error in
             if let error = error {
                 print("Error adding new person to peopleRegistered: \(error)")
             } else {
-                print("New person added to peopleRegistered successfully!")
+                //print("New person added to peopleRegistered successfully!")
             }
         }
         

@@ -66,10 +66,6 @@ public class EventRegistrationRepository: ObservableObject {
     }
     func addEventRegistration(_ eventRegistration: EventRegistration) throws {
         
-        
-        
-        
-         print("***Called event registration")
         let collectionRef = firestore.collection(EventRegistration.collectionName)
         
         // Add the document to Firestore
@@ -92,7 +88,6 @@ public class EventRegistrationRepository: ObservableObject {
                     print(" Event registration failed - no event id ")
                     return
                 }
-                print("This is my new event registration id\(newEventRegistrationId.documentID)")
                 userRef.updateData(["eventRegistrations": FieldValue.arrayUnion([newEventRegistrationId.documentID])]) { error in
                     if let error = error {
                         print("Error adding new event registration  to to User's eventRegistrations: \(error)")

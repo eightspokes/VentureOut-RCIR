@@ -12,10 +12,9 @@ struct CalendarView: UIViewRepresentable {
     let interval: DateInterval
     @ObservedObject var eventViweModel: EventViewModel
     @ObservedObject var authViewModel: AuthViewModel
+    @ObservedObject var eventRegistrationViewModel: EventRegistrationViewModel
     @Binding var dateSelected: DateComponents?
     @Binding var displayEvents: Bool
-    //@EnvironmentObject var authViewModel: AuthViewModel
-    
     
     func makeUIView(context: Context) -> UICalendarView {
         let view = UICalendarView()
@@ -32,6 +31,7 @@ struct CalendarView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UICalendarView, context: Context) {
         DispatchQueue.main.async {
+            //Event changed
             if let changedEvent = eventViweModel.changedEvent {
                 uiView.reloadDecorations(forDateComponents: [changedEvent.dateComponents], animated: true)
                 eventViweModel.changedEvent = nil
@@ -40,7 +40,17 @@ struct CalendarView: UIViewRepresentable {
                 uiView.reloadDecorations(forDateComponents: [movedEvent.dateComponents], animated: true)
                 eventViweModel.movedEvent = nil
             }
-           
+            
+            //Event registration changed
+            if let changedEventRegistration = eventRegistrationViewModel.changedEvent {
+
+                uiView.reloadDecorations(forDateComponents: [changedEventRegistration.dateComponents], animated: true)
+                eventRegistrationViewModel.changedEvent = nil
+            }
+            if let movedEventRegistration = eventRegistrationViewModel.movedEvent {
+                uiView.reloadDecorations(forDateComponents: [movedEventRegistration.dateComponents], animated: true)
+                eventRegistrationViewModel.movedEvent = nil
+            }
         }
     }
     
@@ -48,12 +58,14 @@ struct CalendarView: UIViewRepresentable {
         var parent: CalendarView
         @ObservedObject var eventStore: EventViewModel
         @ObservedObject var authViewModel: AuthViewModel
+        @ObservedObject var eventRegistrationViewModel: EventRegistrationViewModel
        
        
-        init(parent: CalendarView, eventStore: ObservedObject<EventViewModel>, authViewModel: ObservedObject<AuthViewModel>){
+        init(parent: CalendarView, eventStore: ObservedObject<EventViewModel>, authViewModel: ObservedObject<AuthViewModel>, eventRegistrationViewModel: ObservedObject<EventRegistrationViewModel>){
             self.parent = parent
             self._eventStore = eventStore
             self._authViewModel = authViewModel
+            self._eventRegistrationViewModel = eventRegistrationViewModel
         }
         
         
@@ -65,42 +77,38 @@ struct CalendarView: UIViewRepresentable {
             
             //If we are registered for events this day
             if isRegistered(dateComponents: dateComponents) {
+         
+                print("CaledarView  Person.fill.checkmark")
                 return .image(UIImage(systemName: "person.fill.checkmark"),
                               color: .green, size: .large)
-            }
-
-            
-            //If we have several events in one day
-            if foundEvents.count > 1 {
+                //If we have several events in one day
+            } else if foundEvents.count > 1 {
+                print("CaledarView doc.on.doc.fill")
                 return .image(UIImage(systemName: "doc.on.doc.fill"),
                               color: .blue, size: .large)
+            } else{
+                print("CaledarView customView")
+                return .customView {
+                    
+                    let icon = UILabel()
+                    icon.text = foundEvents.first!.eventType.icon
+                    return icon
+                }
             }
-            
-            //If we have a signle event today
-            let singleEvent = foundEvents.first!
-            return .customView {
-                
-                let icon = UILabel()
-                icon.text = singleEvent.eventType.icon
-                return icon
-            }
-
         }
         
         func isRegistered(dateComponents: DateComponents) -> Bool {
+            //Find events for this day
             let foundEvents = eventStore.events.filter{ $0.date.startOfDay == dateComponents.date?.startOfDay}
-            guard let userRegistrations = authViewModel.currentUser?.eventRegistrations else{
+            guard let user = authViewModel.currentUser else {
                 return false
             }
-            
+
             for event in foundEvents{
-                for userRegistration in userRegistrations {
-                    if event.eventRegistrations.contains( userRegistration){
-                        return true
-                    }
+                if eventRegistrationViewModel.isRegistered(user, for: event){
+                    return true
                 }
             }
-
             return false
         }
         
@@ -115,11 +123,8 @@ struct CalendarView: UIViewRepresentable {
         func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool {
             return true
         }
-     
     }
-
     func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self, eventStore: self._eventViweModel, authViewModel: self._authViewModel)
+        Coordinator(parent: self, eventStore: self._eventViweModel, authViewModel: self._authViewModel, eventRegistrationViewModel: self._eventRegistrationViewModel)
     }
-   
 }

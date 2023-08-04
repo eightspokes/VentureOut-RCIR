@@ -8,24 +8,23 @@
 import SwiftUI
 
 struct DaysEventsListView: View {
-    @ObservedObject var eventStore: EventViewModel
-   // @EnvironmentObject var authViewModel:  AuthViewModel
-    
+    @EnvironmentObject var authViewModel:  AuthViewModel
+    @EnvironmentObject var eventViewModel:  EventViewModel
     @Binding var dateSelected: DateComponents?
-    @State  var formType: EventFormType? //dual purpose view type
+    @State private var formType: EventFormType? //dual purpose view type
     @State  var privilage: ProfilePrivilege
    
     var body: some View {
         NavigationStack {
             Group {
                 if let dateSelected {
-                    let foundEvents = eventStore.events.filter { $0.date.startOfDay == dateSelected.date!.startOfDay }
+                    let foundEvents = eventViewModel.events.filter { $0.date.startOfDay == dateSelected.date!.startOfDay }
                     List{
                         ForEach(foundEvents) { event in
                             ListViewRow(event: event, formType: $formType, userType: $privilage )
                                 .swipeActions{
                                     Button(role: .destructive){
-                                        eventStore.delete(event)
+                                        eventViewModel.delete(event)
                                     } label: {
                                         Image(systemName: "trash")
                                     }
@@ -51,7 +50,7 @@ struct DaysEventsListView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        DaysEventsListView(eventStore: EventViewModel(preview: true), dateSelected: .constant(dateComponents), privilage: ProfilePrivilege.admin)
-           // .environmentObject(EventViewModel(preview: true))
+        DaysEventsListView(dateSelected: .constant(dateComponents), privilage: ProfilePrivilege.admin)
+           .environmentObject(EventViewModel(preview: true))
     }
 }

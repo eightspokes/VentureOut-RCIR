@@ -7,7 +7,6 @@ import Factory
 @MainActor
 class EventViewModel: ObservableObject {
     @Published var events = [Event]()
-    @Published var eventResistrations = [EventRegistration]()
     @Published var preview: Bool
     @Published var changedEvent: Event?
     @Published var movedEvent: Event?
@@ -45,14 +44,14 @@ class EventViewModel: ObservableObject {
                 changedEvent = events.remove(at: index)
             }
         }else{
-            eventsRepository.removeEvent(event)
+            changedEvent = eventsRepository.removeEvent(event)
         }  
     }
 
     func add(_ event: Event) {
         if preview{
             events.append(event)
-            print( "appending events in preview")
+            changedEvent = event
         }else{
             do {
                 
@@ -70,18 +69,15 @@ class EventViewModel: ObservableObject {
     }
 
     func update(_ event: Event) {
-        print("Update event called")
         do {
+            movedEvent = event
             try eventsRepository.updateEvent(event)
+            changedEvent = event
             }
             catch {
               print(error)
               errorMessage = error.localizedDescription
             }
-    }
-    func addEventRegistration(event:Event, user: User){
-        print("Adding new user to Registration")
-        eventsRepository.updateEventRegistration(event: event, user: user)
     }
 
 }

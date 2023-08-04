@@ -76,8 +76,6 @@ class AuthViewModel: ObservableObject {
         guard let uid = auth.currentUser?.uid else {return}
         guard let snapshot = try? await firestore.collection("users").document(uid).getDocument() else { return }
         self.currentUser = try? snapshot.data(as: User.self)
-        
-        print("!!! \(String(describing: self.currentUser?.fullName))")
     }
     
 }
