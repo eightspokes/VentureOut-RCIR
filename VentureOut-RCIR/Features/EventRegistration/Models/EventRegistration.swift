@@ -62,7 +62,6 @@ struct EventRegistration: Codable, Identifiable{
                           userId: "John Doe",
                           fullName: "john.doe@example.com",
                           email: "Please approve my registration.", noteToAdmin: "Hello")
-        
         ]
 }
 //To be used by Repository to specify collection Name in Firebase

@@ -11,12 +11,22 @@ struct ListViewRow: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     @State var showEventRegistrationForm = false
-    @State private var showingYouAreRegisteredAlert = false
+    @State private var showingYouAreAboutToSignOutAlert = false
+    
     
     var body: some View {
+        
+        
         HStack {
             VStack(alignment: .leading, spacing: 5 ) {
                 HStack(spacing: 2) {
+                    if let currentUser = authViewModel.currentUser {
+                        if eventRegistrationViewModel.isRegistered(currentUser, for: event){
+                            Image(systemName: "checkmark")
+                                .foregroundColor(.green)
+                        }
+                    }
+                    
                     Text(event.eventType.icon)
                         .font(.system(size: 20))
                     Text(event.note)
@@ -27,56 +37,64 @@ struct ListViewRow: View {
                                          time: .shortened)
                 ).font(.footnote)
                 
-                HStack(spacing: 20){
-                    Text("Registered \(event.eventRegistrations.count)")
-                    //.padding(.vertical)
-                        .font(.body)
+                HStack(){
+                    Text("\(event.eventRegistrations.count)")
+                    Image(systemName: "person")
                 }
-                if userType == .admin{
-                    HStack{
-                        Button {
-                            guard let user = authViewModel.currentUser else{
-                                return
+                .font(.footnote)
+                if let currentUser = authViewModel.currentUser {
+                    if userType == .admin{
+                        HStack{
+                            Button {
+                               
+                                
+                            } label: {
+                                Text("Register Rowers")
+                                    .font(.system(size: 15))
                             }
-                            if eventRegistrationViewModel.isRegistered(user, for: event){
-                                showingYouAreRegisteredAlert = true
-                            }else{
-                                showEventRegistrationForm = true
-                            }
+                            .buttonStyle(.bordered)
                             
-                        } label: {
-                            Text("Register ")
-                                .font(.system(size: 15))
+                            Button {
+                                formType = .update(event)
+                            } label: {
+                                Text("Edit Event")
+                                    .font(.system(size: 15))
+                            }
+                            .buttonStyle(.bordered)
+                            
                         }
-                        .buttonStyle(.bordered)
-                        
                     }
                 }
             }
             Spacer()
-            if userType == .admin{
+            if let currentUser = authViewModel.currentUser{
+                let isRegistered = eventRegistrationViewModel.isRegistered(currentUser, for: event)
                 Button {
-                    formType = .update(event)
+                    if !isRegistered{
+                        showEventRegistrationForm = true
+                    }else{
+                        showingYouAreAboutToSignOutAlert = true
+                    }
+                    
                 } label: {
-                    Text("Edit")
+                    
+                    
+                    Text(isRegistered ? "Sign out" : "Sign up" )
                         .font(.system(size: 15))
                 }
                 .buttonStyle(.bordered)
-            } else {
                 
-                Button {
-                } label: {
-                    Text( "Sign up")
-                        .font(.system(size: 15))
-                }
-                .buttonStyle(.bordered)
             }
+            
+        
         }
         .sheet(isPresented: $showEventRegistrationForm){
             EventRegistrationForm(event: event)
         }
-        .alert("You are already registered for this event", isPresented: $showingYouAreRegisteredAlert) {
-            Button("OK", role: .cancel) { }
+        .alert("Please confirm that you want to sign out from  \(event.note) on \(event.date.formatted())", isPresented: $showingYouAreAboutToSignOutAlert) {
+            Button("OK", role: .cancel) {
+                print("Yes Let her go")
+            }
         }
     }
     
