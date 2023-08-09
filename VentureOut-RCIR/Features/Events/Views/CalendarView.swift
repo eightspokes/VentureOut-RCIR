@@ -105,7 +105,7 @@ struct CalendarView: UIViewRepresentable {
             }
 
             for event in foundEvents{
-                if eventRegistrationViewModel.isRegistered(user, for: event){
+                if (eventRegistrationViewModel.isRegistered(user, for: event) != nil){
                     return true
                 }
             }

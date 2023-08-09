@@ -59,23 +59,29 @@ class EventRegistrationViewModel: ObservableObject {
         }
 
     }
-    
-    func isRegistered(_ user: User, for event: Event) -> Bool{
+    func deleteRegistrationsBy(_ event: Event){
+        if preview{
+           
+        }else{
+            eventRegistrationRepository.removeEventRegistrationBy(event)
+        }
+    }
+    func isRegistered(_ user: User, for event: Event) -> EventRegistration? {
         
         for eventRegistration in eventRegistrations {
             if eventRegistration.eventId == event.id && eventRegistration.userId == user.id{
                 print("You are already registred for this event!")
-                return true
+                return eventRegistration
             }
         }
-        return false
+        return nil
     }
     
     
 
     func add(event: Event, user: User, noteToAdmin: String) {
         
-        if isRegistered(user, for: event){
+        if isRegistered(user, for: event) != nil {
             return
         }
 

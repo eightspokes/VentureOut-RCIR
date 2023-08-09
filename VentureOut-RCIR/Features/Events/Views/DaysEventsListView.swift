@@ -10,6 +10,7 @@ import SwiftUI
 struct DaysEventsListView: View {
     @EnvironmentObject var authViewModel:  AuthViewModel
     @EnvironmentObject var eventViewModel:  EventViewModel
+    @EnvironmentObject var eventRegistrationViewModel:  EventRegistrationViewModel
     @Binding var dateSelected: DateComponents?
     @State private var formType: EventFormType? //dual purpose view type
     @State  var privilage: ProfilePrivilege
@@ -24,7 +25,9 @@ struct DaysEventsListView: View {
                             ListViewRow(event: event, formType: $formType, userType: $privilage )
                                 .swipeActions{
                                     Button(role: .destructive){
+                                        eventRegistrationViewModel.deleteRegistrationsBy(event)
                                         eventViewModel.delete(event)
+                                        
                                     } label: {
                                         Image(systemName: "trash")
                                     }

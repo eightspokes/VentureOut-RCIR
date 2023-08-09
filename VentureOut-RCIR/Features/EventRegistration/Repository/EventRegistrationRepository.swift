@@ -112,6 +112,8 @@ public class EventRegistrationRepository: ObservableObject {
         
         
     }
+    
+    
     func updateEventRegistration(_ eventRegistration: EventRegistration) throws {
         guard let documentId = eventRegistration.id else{
             fatalError("Event \(eventRegistration.note) has no document ID.")
@@ -123,14 +125,90 @@ public class EventRegistrationRepository: ObservableObject {
             .setData(from: eventRegistration, merge: true)
     }
     func removeEventRegistration(_ eventRegistration: EventRegistration){
-        guard let documentId = eventRegistration.id else {
+        guard let eventRegistrationId = eventRegistration.id else {
             fatalError("Event \(eventRegistration.note) has no document ID.")
         }
+        
         firestore
             .collection(EventRegistration.collectionName)
-            .document(documentId)
+            .document(eventRegistrationId)
             .delete()
+        //Remove eventRegistration from User
+        removeElementFromEventRegistrations(collection: User.collectionName, eventDocumentID: eventRegistration.userId, elementToRemove: eventRegistrationId)
+        //Remove eventRegistration from Event
+        removeElementFromEventRegistrations(collection: Event.collectionName, eventDocumentID: eventRegistration.eventId, elementToRemove: eventRegistrationId)
     }
+    //Events and Users have eventreGistrations array, when an eventRegistration is remove, the correspondent
+    //arrays need to be updated.
+    
+    
+    func removeEventRegistrationBy(_ event: Event){
+        //First find all eventRegistration that register users for event
+        let eventRegistrationCollection = firestore.collection(EventRegistration.collectionName)
+        eventRegistrationCollection.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error fetching documents: \(error)")
+                    return
+                }
+                
+                for document in querySnapshot!.documents {
+                    let eventId = document["eventId"] as? String
+                    
+                    if let eventId = eventId {
+                        if eventId == event.id{
+                            // Need to delete this
+                        }
+                        
+                    } else {
+                        print("Event ID not found in document")
+                    }
+                }
+            }
+        
+//        //Remove eventRegistration from User
+//        removeElementFromEventRegistrations(collection: User.collectionName, eventDocumentID: eventRegistration.userId, elementToRemove: eventRegistrationId)
+//        //Remove eventRegistration from Event
+//        removeElementFromEventRegistrations(collection: Event.collectionName, eventDocumentID: eventRegistration.eventId, elementToRemove: eventRegistrationId)
+    }
+    
+    
+    
+    private func removeElementFromEventRegistrations(collection: String, eventDocumentID: String, elementToRemove: String) {
+        
+        let eventRef = firestore.collection(collection).document(eventDocumentID)
+        
+        eventRef.getDocument { (documentSnapshot, error) in
+            if let error = error {
+                print("Error getting document: \(error)")
+                return
+            }
+            
+            guard let document = documentSnapshot, document.exists else {
+                print("Document not found")
+                return
+            }
+            
+            var data = document.data() ?? [:]
+            
+            if var eventRegistrations = data["eventRegistrations"] as? [String],
+               let indexToRemove = eventRegistrations.firstIndex(of: elementToRemove) {
+                
+                eventRegistrations.remove(at: indexToRemove)
+                data["eventRegistrations"] = eventRegistrations
+                
+                eventRef.setData(data) { error in
+                    if let error = error {
+                        print("Error updating document: \(error)")
+                    } else {
+                        print("Element removed successfully")
+                    }
+                }
+            } else {
+                print("Element not found in the array")
+            }
+        }
+    }
+
 
     
 }

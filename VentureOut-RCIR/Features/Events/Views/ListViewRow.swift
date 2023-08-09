@@ -21,9 +21,10 @@ struct ListViewRow: View {
             VStack(alignment: .leading, spacing: 5 ) {
                 HStack(spacing: 2) {
                     if let currentUser = authViewModel.currentUser {
-                        if eventRegistrationViewModel.isRegistered(currentUser, for: event){
+                        if (eventRegistrationViewModel.isRegistered(currentUser, for: event) != nil){
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
+                                .font(.caption2)
                         }
                     }
                     
@@ -68,9 +69,9 @@ struct ListViewRow: View {
             }
             Spacer()
             if let currentUser = authViewModel.currentUser{
-                let isRegistered = eventRegistrationViewModel.isRegistered(currentUser, for: event)
+                let eventRegistration = eventRegistrationViewModel.isRegistered(currentUser, for: event)
                 Button {
-                    if !isRegistered{
+                    if eventRegistration == nil {
                         showEventRegistrationForm = true
                     }else{
                         showingYouAreAboutToSignOutAlert = true
@@ -79,7 +80,7 @@ struct ListViewRow: View {
                 } label: {
                     
                     
-                    Text(isRegistered ? "Sign out" : "Sign up" )
+                    Text(eventRegistration != nil ? "Sign out" : "Sign up" )
                         .font(.system(size: 15))
                 }
                 .buttonStyle(.bordered)
@@ -93,7 +94,14 @@ struct ListViewRow: View {
         }
         .alert("Please confirm that you want to sign out from  \(event.note) on \(event.date.formatted())", isPresented: $showingYouAreAboutToSignOutAlert) {
             Button("OK", role: .cancel) {
-                print("Yes Let her go")
+                if let currentUser = authViewModel.currentUser{
+                    
+                    if let eventRegistration = eventRegistrationViewModel.isRegistered(currentUser, for: event){
+                        eventRegistrationViewModel.delete(eventRegistration)
+                    }
+                   
+                }
+               
             }
         }
     }
