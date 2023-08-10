@@ -44,7 +44,6 @@ public class EventRegistrationRepository: ObservableObject {
             /*
              This listener will be called whenever the data returned by the query changes: e.g. when a new document is added, data in a document is changed, or a document is deleted.
              */
-            
             query
                 .addSnapshotListener { [weak self] (querySnapshot, error) in
                     //Make sure query is not empty
@@ -77,7 +76,7 @@ public class EventRegistrationRepository: ObservableObject {
             } else {
                 // The document has been added successfully
                 // The ID of the newly created document will be available in eventRegistration.id
-               // print("This is my new event ref\(newEventRegistrationRef?.documentID ?? "No Event ref")")
+                // print("This is my new event ref\(newEventRegistrationRef?.documentID ?? "No Event ref")")
                 let userRef = firestore.collection(User.collectionName).document(eventRegistration.userId)
                 let eventRef = firestore.collection(Event.collectionName).document(eventRegistration.eventId)
                 
@@ -104,16 +103,7 @@ public class EventRegistrationRepository: ObservableObject {
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
     func updateEventRegistration(_ eventRegistration: EventRegistration) throws {
         guard let documentId = eventRegistration.id else{
             fatalError("Event \(eventRegistration.note) has no document ID.")
@@ -142,36 +132,26 @@ public class EventRegistrationRepository: ObservableObject {
     //arrays need to be updated.
     
     
-    func removeEventRegistrationBy(_ event: Event){
-        //First find all eventRegistration that register users for event
+    func removeEventRegistrationBy(_ event: Event) {
         let eventRegistrationCollection = firestore.collection(EventRegistration.collectionName)
-        eventRegistrationCollection.getDocuments { (querySnapshot, error) in
+        
+        eventRegistrationCollection
+            .whereField("eventId", isEqualTo: event.id!)
+            .getDocuments(completion: { (querySnapshot, error) in
                 if let error = error {
                     print("Error fetching documents: \(error)")
                     return
-                }
-                
-                for document in querySnapshot!.documents {
-                    let eventId = document["eventId"] as? String
-                    
-                    if let eventId = eventId {
-                        if eventId == event.id{
-                            // Need to delete this
-                        }
-                        
-                    } else {
-                        print("Event ID not found in document")
+                } else {
+                    for document in querySnapshot!.documents {
+                        // Remove registration itself
+                        document.reference.delete()
+                        // Remove eventRegistration from User
+                        self.removeElementFromEventRegistrations(collection: User.collectionName, eventDocumentID: document["userId"] as? String ?? "", elementToRemove: document.documentID)
                     }
+                    print("Documents with eventId: \(String(describing: event.id)) deleted successfully.")
                 }
-            }
-        
-//        //Remove eventRegistration from User
-//        removeElementFromEventRegistrations(collection: User.collectionName, eventDocumentID: eventRegistration.userId, elementToRemove: eventRegistrationId)
-//        //Remove eventRegistration from Event
-//        removeElementFromEventRegistrations(collection: Event.collectionName, eventDocumentID: eventRegistration.eventId, elementToRemove: eventRegistrationId)
+            })
     }
-    
-    
     
     private func removeElementFromEventRegistrations(collection: String, eventDocumentID: String, elementToRemove: String) {
         
@@ -208,7 +188,4 @@ public class EventRegistrationRepository: ObservableObject {
             }
         }
     }
-
-
-    
 }

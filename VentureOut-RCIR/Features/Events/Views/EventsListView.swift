@@ -3,6 +3,8 @@ import SwiftUI
 
 struct EventsListView: View {
     @EnvironmentObject var eventViewModel: EventViewModel
+    @EnvironmentObject var eventRegistrationViewModel: EventRegistrationViewModel
+    
     @State private var formType: EventFormType?
     @State private var userType: ProfilePrivilege = .admin
     @State private var showNewEventView = false
@@ -25,18 +27,14 @@ struct EventsListView: View {
                             .imageScale(.large)
                             .padding(.trailing)
                     }
-                    
-                    
-                    
                 }
-                
                 List {
-                    
                     ForEach(eventViewModel.events.sorted {$0.date < $1.date }) { event in
                         ListViewRow(event: event, formType: $formType, userType: $userType)
                             .swipeActions {
                                 Button(role: .destructive) {
                                     eventViewModel.delete(event)
+                                    eventRegistrationViewModel.deleteRegistrationsBy(event)
                                 } label: {
                                     Image(systemName: "trash")
                                 }

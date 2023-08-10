@@ -61,7 +61,7 @@ class EventRegistrationViewModel: ObservableObject {
     }
     func deleteRegistrationsBy(_ event: Event){
         if preview{
-           
+           //TODO: Implement this
         }else{
             eventRegistrationRepository.removeEventRegistrationBy(event)
         }
