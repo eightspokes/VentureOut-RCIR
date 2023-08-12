@@ -78,4 +78,24 @@ class AuthViewModel: ObservableObject {
         self.currentUser = try? snapshot.data(as: User.self)
     }
     
+    // Function to fetch all users
+      func fetchAllUsers(completion: @escaping ([User]) -> Void) {
+          firestore.collection("users").getDocuments { snapshot, error in
+              if let error = error {
+                  print("DEBUG: Error fetching all users - \(error.localizedDescription)")
+                  completion([])
+                  return
+              }
+              
+              var users: [User] = []
+              for document in snapshot?.documents ?? [] {
+                  if let user = try? document.data(as: User.self) {
+                      users.append(user)
+                  }
+              }
+              
+              completion(users)
+          }
+      }
+    
 }

@@ -20,6 +20,10 @@
 		301208222A50C547009C9EAC /* DynamicBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208212A50C547009C9EAC /* DynamicBackgroundView.swift */; };
 		301208262A532BB0009C9EAC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208252A532BAF009C9EAC /* CalendarView.swift */; };
 		301208282A53A348009C9EAC /* DaysEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208272A53A348009C9EAC /* DaysEventsListView.swift */; };
+		3079A6712A8588F000278877 /* RoweView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6702A8588F000278877 /* RoweView.swift */; };
+		3079A6732A85890700278877 /* RowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6722A85890700278877 /* RowersListView.swift */; };
+		3079A6752A85892200278877 /* AddNewRowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6742A85892200278877 /* AddNewRowerView.swift */; };
+		3079A6772A86E1C900278877 /* RegisterRowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6762A86E1C900278877 /* RegisterRowersView.swift */; };
 		309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830502A3DCFF300F50658 /* InputPasswordView.swift */; };
 		309830532A3DDA2900F50658 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830522A3DDA2900F50658 /* ButtonView.swift */; };
 		30B30B052A798C8700CB6D80 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 30B30B042A798C8700CB6D80 /* Factory */; };
@@ -98,6 +102,10 @@
 		301208212A50C547009C9EAC /* DynamicBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicBackgroundView.swift; sourceTree = "<group>"; };
 		301208252A532BAF009C9EAC /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		301208272A53A348009C9EAC /* DaysEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysEventsListView.swift; sourceTree = "<group>"; };
+		3079A6702A8588F000278877 /* RoweView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoweView.swift; sourceTree = "<group>"; };
+		3079A6722A85890700278877 /* RowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowersListView.swift; sourceTree = "<group>"; };
+		3079A6742A85892200278877 /* AddNewRowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRowerView.swift; sourceTree = "<group>"; };
+		3079A6762A86E1C900278877 /* RegisterRowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRowersView.swift; sourceTree = "<group>"; };
 		309830502A3DCFF300F50658 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		309830522A3DDA2900F50658 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		30AEAAFB2A489ADA00BC635C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +208,16 @@
 			path = DualPurpuseForm;
 			sourceTree = "<group>";
 		};
+		3079A66F2A8588A300278877 /* RowersTab */ = {
+			isa = PBXGroup;
+			children = (
+				3079A6702A8588F000278877 /* RoweView.swift */,
+				3079A6742A85892200278877 /* AddNewRowerView.swift */,
+				3079A6722A85890700278877 /* RowersListView.swift */,
+			);
+			path = RowersTab;
+			sourceTree = "<group>";
+		};
 		30AEAAF92A489A5600BC635C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +282,7 @@
 				301208142A50C277009C9EAC /* EventsListView.swift */,
 				301208102A50C259009C9EAC /* StartTabView.swift */,
 				301208272A53A348009C9EAC /* DaysEventsListView.swift */,
+				3079A6762A86E1C900278877 /* RegisterRowersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,6 +481,7 @@
 				30B30B0C2A79960B00CB6D80 /* Events */,
 				30B30B222A7AC9BF00CB6D80 /* EventRegistration */,
 				30B30B0D2A79961900CB6D80 /* Profile */,
+				3079A66F2A8588A300278877 /* RowersTab */,
 				30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */,
 				30CC9D0E2A5C75D600CCD505 /* BaseMenuView.swift */,
 			);
@@ -655,7 +675,9 @@
 				3007E5932A71974800BF568C /* EventRepository.swift in Sources */,
 				301208152A50C277009C9EAC /* ListViewRow.swift in Sources */,
 				30C700E22A4A43DE00FD4ED5 /* AuthViewModel.swift in Sources */,
+				3079A6712A8588F000278877 /* RoweView.swift in Sources */,
 				3012080F2A50BEE7009C9EAC /* EventViewModel.swift in Sources */,
+				3079A6732A85890700278877 /* RowersListView.swift in Sources */,
 				30B896082A55BDB500B7685D /* Test.swift in Sources */,
 				30B30B192A79A95A00CB6D80 /* EventRepository+Injection.swift in Sources */,
 				30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */,
@@ -663,6 +685,8 @@
 				30BADD302A4F897F00014DF2 /* Event.swift in Sources */,
 				301208282A53A348009C9EAC /* DaysEventsListView.swift in Sources */,
 				30D3A9072A3CFA0C0038C8D6 /* InputTextFieldView.swift in Sources */,
+				3079A6752A85892200278877 /* AddNewRowerView.swift in Sources */,
+				3079A6772A86E1C900278877 /* RegisterRowersView.swift in Sources */,
 				30B30B092A798D1100CB6D80 /* Firebase+Injection.swift in Sources */,
 				300119B62A658A3000677D32 /* ProfilePictureView.swift in Sources */,
 			);

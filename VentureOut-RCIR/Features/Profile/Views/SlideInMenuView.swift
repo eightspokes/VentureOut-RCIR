@@ -20,12 +20,12 @@ struct SlideInMenuView: View {
                         
                         slideInMenuService.toggleMenu()
                     }label:{
-                        ProfilePictureView(image: "Paige")
+                        ProfilePictureView(image: "Pat")
                             .padding()
                     }
                     Spacer()
                 }
-                PersonalInfo(image: "Roman", userName: authViewModel.currentUser?.fullName ?? "", email: authViewModel.currentUser?.email ?? "")
+                PersonalInfo(image: "Roman", userName: authViewModel.currentUser?.fullName ?? "", email: authViewModel.currentUser?.email ?? "", privilege: authViewModel.currentUser?.privilege.stringValue() ?? "" )
                 
                 ScrollView(.vertical, showsIndicators: true){
                     VStack(spacing: 20){
@@ -68,13 +68,15 @@ struct SlideInMenuView: View {
     }
     
     @ViewBuilder
-    func PersonalInfo(image: String, userName: String, email: String) -> some View{
+    func PersonalInfo(image: String, userName: String, email: String, privilege: String) -> some View{
         HStack {
             VStack(alignment: .leading, spacing: 5){
-                Text(userName)
+                Text(userName )
                     .font(.title2.bold())
                 Text(email)
                     .font(.callout)
+                Text(privilege)
+                    .font(.caption)
             }
             Spacer()
         }

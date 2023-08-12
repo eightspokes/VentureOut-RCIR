@@ -21,7 +21,6 @@ struct EventsListView: View {
                     Spacer()
                     Button{
                         formType = .new
-                        // showNewEventView = true
                     }label: {
                         Image(systemName: "plus.circle.fill")
                             .imageScale(.large)
@@ -30,7 +29,7 @@ struct EventsListView: View {
                 }
                 List {
                     ForEach(eventViewModel.events.sorted {$0.date < $1.date }) { event in
-                        ListViewRow(event: event, formType: $formType, userType: $userType)
+                        ListViewRow(event: event, formType: $formType)
                             .swipeActions {
                                 Button(role: .destructive) {
                                     eventViewModel.delete(event)
@@ -57,5 +56,6 @@ struct EventsListView_Previews: PreviewProvider {
     static var previews: some View {
         EventsListView()
            .environmentObject(EventViewModel(preview: true))
+           .environmentObject(EventRegistrationViewModel())
     }
 }

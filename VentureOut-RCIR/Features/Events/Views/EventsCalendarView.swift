@@ -64,5 +64,7 @@ struct EventCalendarView_Previews: PreviewProvider {
     static var previews: some View {
         EventsCalendarView()
             .environmentObject(EventViewModel(preview: true))
+            .environmentObject(AuthViewModel(preview: true))
+            .environmentObject(EventRegistrationViewModel(preview: true))
     }
 }

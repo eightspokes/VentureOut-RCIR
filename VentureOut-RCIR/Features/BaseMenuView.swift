@@ -46,18 +46,18 @@ struct BaseMenuView: View {
                         .padding(.horizontal)
                         
                         TabView{
-                            EventsListView()
-                                .tabItem {
-                                    Label("Event List", systemImage: "filemenu.and.selection")
-                                }
+//                            EventsListView()
+//                                .tabItem {
+//                                    Label("Event List", systemImage: "filemenu.and.selection")
+//                                }
                             EventsCalendarView()
                             
                                 .tabItem {
                                     Label("Calendar", systemImage: "calendar")
                                 }
-                            Text("Rowing now")
+                            RowersListView()
                                 .tabItem {
-                                    Label("Rowing today", systemImage:  "figure.rower")
+                                    Label("Rowers", systemImage:  "figure.rower")
                                 }
                             
                             Text("Weather")

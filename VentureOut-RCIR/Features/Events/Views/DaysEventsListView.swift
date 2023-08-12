@@ -17,12 +17,12 @@ struct DaysEventsListView: View {
    
     var body: some View {
         NavigationStack {
-            Group {
+            Group { 
                 if let dateSelected {
                     let foundEvents = eventViewModel.events.filter { $0.date.startOfDay == dateSelected.date!.startOfDay }
                     List{
                         ForEach(foundEvents) { event in
-                            ListViewRow(event: event, formType: $formType, userType: $privilage )
+                            ListViewRow(event: event, formType: $formType)
                                 .swipeActions{
                                     Button(role: .destructive){
                                         eventRegistrationViewModel.deleteRegistrationsBy(event)
