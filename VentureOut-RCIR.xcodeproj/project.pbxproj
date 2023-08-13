@@ -24,6 +24,7 @@
 		3079A6732A85890700278877 /* RowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6722A85890700278877 /* RowersListView.swift */; };
 		3079A6752A85892200278877 /* AddNewRowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6742A85892200278877 /* AddNewRowerView.swift */; };
 		3079A6772A86E1C900278877 /* RegisterRowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6762A86E1C900278877 /* RegisterRowersView.swift */; };
+		3079A6792A884DC900278877 /* RowersRegisteredForEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6782A884DC900278877 /* RowersRegisteredForEventView.swift */; };
 		309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830502A3DCFF300F50658 /* InputPasswordView.swift */; };
 		309830532A3DDA2900F50658 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830522A3DDA2900F50658 /* ButtonView.swift */; };
 		30B30B052A798C8700CB6D80 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 30B30B042A798C8700CB6D80 /* Factory */; };
@@ -106,6 +107,7 @@
 		3079A6722A85890700278877 /* RowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowersListView.swift; sourceTree = "<group>"; };
 		3079A6742A85892200278877 /* AddNewRowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewRowerView.swift; sourceTree = "<group>"; };
 		3079A6762A86E1C900278877 /* RegisterRowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRowersView.swift; sourceTree = "<group>"; };
+		3079A6782A884DC900278877 /* RowersRegisteredForEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowersRegisteredForEventView.swift; sourceTree = "<group>"; };
 		309830502A3DCFF300F50658 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		309830522A3DDA2900F50658 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		30AEAAFB2A489ADA00BC635C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				301208132A50C277009C9EAC /* ListViewRow.swift */,
 				301208092A50BDC5009C9EAC /* EventsCalendarView.swift */,
 				301208252A532BAF009C9EAC /* CalendarView.swift */,
+				3079A6782A884DC900278877 /* RowersRegisteredForEventView.swift */,
 				301208142A50C277009C9EAC /* EventsListView.swift */,
 				301208102A50C259009C9EAC /* StartTabView.swift */,
 				301208272A53A348009C9EAC /* DaysEventsListView.swift */,
@@ -665,6 +668,7 @@
 				30F8B63C2A4496DA00B761E4 /* LoginView.swift in Sources */,
 				30D3A8CD2A3CCF4F0038C8D6 /* AppEntry.swift in Sources */,
 				30C700DB2A4A1D2500FD4ED5 /* SettingsRowView.swift in Sources */,
+				3079A6792A884DC900278877 /* RowersRegisteredForEventView.swift in Sources */,
 				30C700DD2A4A372800FD4ED5 /* User.swift in Sources */,
 				30B30B2A2A7AF58200CB6D80 /* EventRegistrationRepository+Injection.swift in Sources */,
 				30F8B63F2A44C19F00B761E4 /* PreviewLayoutModifier.swift in Sources */,

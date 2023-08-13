@@ -91,7 +91,7 @@ class EventRegistrationViewModel: ObservableObject {
         }
     
         
-        let eventRegistration = EventRegistration( eventId: eventId, eventType: event.eventType, date: event.date, note: event.note, userId: user.id, fullName: user.fullName, email: user.email, noteToAdmin: noteToAdmin)
+        let eventRegistration = EventRegistration( user: user, eventId: eventId, eventType: event.eventType, date: event.date, note: event.note, userId: user.id, fullName: user.fullName, email: user.email, noteToAdmin: noteToAdmin)
         
         if preview{
             eventRegistrations.append(eventRegistration)
@@ -129,5 +129,18 @@ class EventRegistrationViewModel: ObservableObject {
               print(error)
               errorMessage = error.localizedDescription
             }
+    }
+}
+extension EventRegistrationViewModel {
+    func getUsers(for eventRegistrationIds: [String]) -> [User] {
+        var users: [User] = []
+        
+        for eventRegistration in eventRegistrations {
+            if eventRegistrationIds.contains(eventRegistration.id ?? "") {
+                users.append(eventRegistration.user)
+            }
+        }
+        
+        return users
     }
 }

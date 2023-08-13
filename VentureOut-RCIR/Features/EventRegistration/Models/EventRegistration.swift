@@ -23,6 +23,7 @@ struct EventRegistration: Codable, Identifiable{
     var date: Date
     var note: String
     
+    let user: User
     let userId: String
     let fullName: String
     let email: String
@@ -30,6 +31,7 @@ struct EventRegistration: Codable, Identifiable{
     
     
     init(id: String? = nil,
+         user: User,
          eventId: String,
          eventType: Event.EventType,
          date: Date,
@@ -38,7 +40,7 @@ struct EventRegistration: Codable, Identifiable{
          fullName: String,
          email: String,
          noteToAdmin: String) {
-        
+        self.user = user
         self.id = id
         self.eventId = eventId
         self.eventType = eventType
@@ -50,13 +52,13 @@ struct EventRegistration: Codable, Identifiable{
         self.noteToAdmin = noteToAdmin
     }
     static var sampleEventRegistration =  [
-        EventRegistration(id: "", eventId: "", eventType: .rowing,
+        EventRegistration(id: "", user: User.MOCK_USER, eventId: "", eventType: .rowing,
                           date: Date(),
                           note: "Some note ",
                           userId: "John Doe",
                           fullName: "john.doe@example.com",
                           email: "Please approve my registration.", noteToAdmin: "Hello"),
-        EventRegistration(id: "", eventId: "", eventType: .rowing,
+        EventRegistration(id: "",user: User.MOCK_USER, eventId: "", eventType: .rowing,
                           date: Date(),
                           note: "Some note ",
                           userId: "John Doe",

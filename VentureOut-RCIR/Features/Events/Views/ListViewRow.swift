@@ -11,7 +11,7 @@ struct ListViewRow: View {
     @State var showEventRegistrationForm = false
     @State private var showingYouAreAboutToSignOutAlert = false
     @State var showRegisterRowers  = false
-    
+    @State var showRowersRegistered = false
     var body: some View {
         
         
@@ -38,7 +38,7 @@ struct ListViewRow: View {
                 
                 
                       Button {
-                          print("Rowers register")
+                          showRowersRegistered = true
                       } label: {
                           HStack() {
                               Image(systemName: "person")
@@ -107,6 +107,9 @@ struct ListViewRow: View {
         }
         .sheet(isPresented: $showRegisterRowers){
             RegisterRowersView(event: event)
+        }
+        .sheet(isPresented: $showRowersRegistered){
+            RowersRegisteredForEventView(eventRegistrations: event.eventRegistrations)
         }
         .alert("Please confirm that you want to sign out from  \(event.note) on \(event.date.formatted())", isPresented: $showingYouAreAboutToSignOutAlert) {
             Button("OK", role: .cancel) {
