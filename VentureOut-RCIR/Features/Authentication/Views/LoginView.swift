@@ -57,7 +57,7 @@ struct LoginView: View {
                 
                 //SIGN UP button
                 NavigationLink{
-                    RegistrationView()
+                    RegistrationView(isAddingOtherRower: false)
                         .navigationBarBackButtonHidden(true)
                 }label: {
                     HStack {

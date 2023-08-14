@@ -60,8 +60,6 @@ struct ListViewRow: View {
                     if authViewModel.currentUser?.privilege == .admin{
                         
                         HStack{
-//                            Text(userType.stringValue())
-//                            Text(userType.stringValue())
                             Button {
                                showRegisterRowers = true
                                 
@@ -106,7 +104,7 @@ struct ListViewRow: View {
             EventRegistrationForm(event: event)
         }
         .sheet(isPresented: $showRegisterRowers){
-            RegisterRowersView(event: event)
+            RegisterRowersView(preview: false, event: event)
         }
         .sheet(isPresented: $showRowersRegistered){
             RowersRegisteredForEventView(eventRegistrations: event.eventRegistrations)

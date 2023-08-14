@@ -40,8 +40,6 @@ struct EventsListView: View {
                             }
                     }
                 }
-                .foregroundColor(.indigo)
-                .font(.title2)
                 
                 .sheet(item: $formType){ formType in
                     formType
@@ -51,7 +49,6 @@ struct EventsListView: View {
         }
     }
 }
-
 struct EventsListView_Previews: PreviewProvider {
     static var previews: some View {
         EventsListView()

@@ -29,12 +29,11 @@ class EventRegistrationViewModel: ObservableObject {
        
         self.preview = preview
         fetchEvents()
-        print("These are my event registrations in EventRegistrationViewMOdel: \(eventRegistrations.count)")
-        
     }
    
 
     func fetchEvents() {
+    
         if preview {
             eventRegistrations = EventRegistration.sampleEventRegistration
         } else {
@@ -42,7 +41,6 @@ class EventRegistrationViewModel: ObservableObject {
             eventRegistrationRepository
               .$eventsRegistrations
               .assign(to: &$eventRegistrations)
-            
         }
     }
     func clearChangedEventRegistration(){
@@ -70,7 +68,6 @@ class EventRegistrationViewModel: ObservableObject {
         
         for eventRegistration in eventRegistrations {
             if eventRegistration.eventId == event.id && eventRegistration.userId == user.id{
-                print("You are already registred for this event!")
                 return eventRegistration
             }
         }
@@ -95,7 +92,6 @@ class EventRegistrationViewModel: ObservableObject {
         
         if preview{
             eventRegistrations.append(eventRegistration)
-            print( "appending events in preview")
         }else{
             do {
                 

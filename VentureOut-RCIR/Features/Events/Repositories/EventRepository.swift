@@ -34,10 +34,8 @@ public class EventRepository: ObservableObject {
         }
     }
     func subscribe() {
-        
         let query = firestore.collection(Event.collectionName)
-
-
+        
         query
           .addSnapshotListener { [weak self] (querySnapshot, error) in
             

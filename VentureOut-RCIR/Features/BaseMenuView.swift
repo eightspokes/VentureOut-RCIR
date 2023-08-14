@@ -34,7 +34,7 @@ struct BaseMenuView: View {
                                     slideInMenuService.toggleMenu()
                                 }
                             }label:{
-                                ProfilePictureView(image: "Paige")
+                                ProfilePictureView(image: "Pat")
                             }
                             
                             Spacer()
@@ -46,15 +46,17 @@ struct BaseMenuView: View {
                         .padding(.horizontal)
                         
                         TabView{
-//                            EventsListView()
-//                                .tabItem {
-//                                    Label("Event List", systemImage: "filemenu.and.selection")
-//                                }
+                            EventsListView()
+                                .tabItem {
+                                    Label("Event List", systemImage: "filemenu.and.selection")
+                                }
+                           
                             EventsCalendarView()
                             
                                 .tabItem {
                                     Label("Calendar", systemImage: "calendar")
                                 }
+                           
                             RowersListView()
                                 .tabItem {
                                     Label("Rowers", systemImage:  "figure.rower")

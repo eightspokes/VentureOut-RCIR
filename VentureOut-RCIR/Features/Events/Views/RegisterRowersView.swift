@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct RegisterRowersView: View {
-    var preview: Bool?
+    var preview: Bool
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var eventRegistrationViewModel: EventRegistrationViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
+    
+    
     @State private var fetchedUsers: [User] = []
     @State private var searchText = ""
+    
+    @State private var showRegisterRowerView = false
+    
+
+    
     var event: Event
     var filteredUsers: [User] {
         if searchText.isEmpty {
+        
             return fetchedUsers
         } else {
             return fetchedUsers.filter { $0.fullName.lowercased().contains(searchText.lowercased()) }
@@ -26,17 +34,17 @@ struct RegisterRowersView: View {
     
     
     private func fetchUsers() {
-        
-        if let preview {
-            if preview{
-                fetchedUsers =  [User(id: UUID().uuidString, fullName: "Roman " , email: "someemail@gmail.com"), User(id: UUID().uuidString, fullName: "Roman " , email: "someemail@gmail.com"), User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb")]
+    
+        if preview{
                 
-            }
-            return
-        }
-        authViewModel.fetchAllUsers { users in
+                fetchedUsers =  [User(id: UUID().uuidString, fullName: "Roman " , email: "someemail@gmail.com"), User(id: UUID().uuidString, fullName: "Roman " , email: "someemail@gmail.com"), User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb"),User.init(id: UUID().uuidString, fullName: "aaa ", email: "bbb")]
+                
+        }else{
+            authViewModel.fetchAllUsers { users in
             fetchedUsers = users
+            }
         }
+       
     }
     
     
@@ -45,79 +53,110 @@ struct RegisterRowersView: View {
         
         NavigationStack {
             
-            List {
-                //                Section ("Event"){
-                //                    VStack(alignment: .leading){
-                //                        Text(event.eventType.icon)
-                //                            .font(.system(size: 20))
-                //                        Text(event.note)
-                //                            .font(.title3)
-                //
-                //                        Text(event.date.formatted(date: .abbreviated,time: .shortened))
-                //                            .font(.subheadline)
-                //
-                //                    }
-                //                }
-                Section("Rowers"){
+            VStack {
+             
+                List {
+                    //                Section ("Event"){
+                    //                    VStack(alignment: .leading){
+                    //                        Text(event.eventType.icon)
+                    //                            .font(.system(size: 20))
+                    //                        Text(event.note)
+                    //                            .font(.title3)
+                    //
+                    //                        Text(event.date.formatted(date: .abbreviated,time: .shortened))
+                    //                            .font(.subheadline)
+                    //
+                    //                    }
+                    //                }
+                   
+                   
                     
-                    
-                    
-                    ForEach(filteredUsers.sorted {$0.fullName > $1.fullName }) { user in
-                        HStack{
-                            ProfilePictureView()
-                                .scaleEffect(x: 0.75, y: 0.75)
-                            VStack(alignment: .leading){
-                                Text(user.fullName)
-                                    .font(.headline)
-                                Text(user.email)
-                                    .font(.caption)
-                            }
-                            Spacer()
-                            let eventRegistration = eventRegistrationViewModel.isRegistered(user, for: event)
-                            Button {
-                                if eventRegistration == nil {
-                                    eventRegistrationViewModel.add(event: event, user: user, noteToAdmin: " Registered by \(authViewModel.currentUser!.fullName)")
-                                }else{
-                                    if let eventRegistration = eventRegistrationViewModel.isRegistered(user, for: event){
-                                        eventRegistrationViewModel.delete(eventRegistration)
-                                    }
+                    Section("Rowers"){
+                        
+                        
+                        
+                        ForEach(filteredUsers.sorted {$0.fullName > $1.fullName }) { user in
+                            HStack{
+                                ProfilePictureView()
+                                    .scaleEffect(x: 0.75, y: 0.75)
+                                VStack(alignment: .leading){
+                                    Text(user.fullName)
+                                        .font(.headline)
+                                    Text(user.email)
+                                        .font(.caption)
                                 }
-                                
-                            } label: {
+                                Spacer()
+                                let eventRegistration = eventRegistrationViewModel.isRegistered(user, for: event)
+                                Button {
+                                    if eventRegistration == nil {
+                                        eventRegistrationViewModel.add(event: event, user: user, noteToAdmin: " Registered by \(authViewModel.currentUser!.fullName)")
+                                    }else{
+                                        if let eventRegistration = eventRegistrationViewModel.isRegistered(user, for: event){
+                                            eventRegistrationViewModel.delete(eventRegistration)
+                                        }
+                                    }
+                                    
+                                } label: {
 
-                                Text(eventRegistration != nil ? "Remove" : "Add " )
-                                    .font(.system(size: 15))
+                                    Text(eventRegistration != nil ? "Remove" : "Add " )
+                                        .font(.system(size: 15))
+                                }
+                                .buttonStyle(.bordered)
+                               
+                                
                             }
-                            .buttonStyle(.bordered)
-                            .buttonStyle(.bordered)
+                            
                             
                         }
-                        
-                        
+                       
+                    }
+                  
+                    
+                    
+                }
+                
+                .navigationTitle("User Registration")
+                .searchable(text: $searchText)
+                .onAppear {
+                   
+                    self.fetchUsers()
+                }
+                
+                
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading){
+                        Button("Cancel"){
+                            dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button{
+                            self.showRegisterRowerView = true
+                            
+                        } label: {
+                            Text("Add new Rower")
+                        }
                     }
                 }
-            }
-            
-            .navigationTitle("User Registration")
+                .sheet(isPresented: $showRegisterRowerView){
+                    
+                    RegistrationView(isAddingOtherRower: true)
+                }
         
-            .searchable(text: $searchText)
-            .onAppear {
-                fetchUsers()
-            }
-            
-            
-            .toolbar{
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button("Cancel"){
-                        dismiss()
-                    }
+
+                .onAppear {
+                    // Fetch users again when the view appears
+                    fetchUsers()
                 }
+                
+               
+                    
             }
         }
         
         
     }
-    
+
     
     
     

@@ -9,11 +9,17 @@ import SwiftUI
 
 struct RegistrationView: View {
     
+    @State var isAddingOtherRower: Bool
+    
     @State private var email = ""
     @State private var firstName = ""
     @State private var secondName = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    
+    
+    
+    
     @Environment (\.dismiss) var dismiss
     @EnvironmentObject var authViewModel:  AuthViewModel
     var body: some View {
@@ -69,9 +75,20 @@ struct RegistrationView: View {
                             }
                         }
                         
-                        ButtonView(title: "SIGN UP"){
+                        ButtonView(title: isAddingOtherRower ? "REGISTER" : "SIGN UP"){
                             Task{
-                                try await authViewModel.createUser(withEmail: email, password: password, fullName: "\(firstName)  \(secondName)")
+                                if isAddingOtherRower {
+                                    
+                                    try await authViewModel.addNewRower(withEmail: email, password: password, fullName: "\(firstName)  \(secondName)")
+                                    //update the state in the parent view when a new rower is added:
+                                   
+                                    print("Before dismiss called")
+                                    dismiss()
+                                    print("After dismiss called")
+                                }else{
+                                    try await authViewModel.createUser(withEmail: email, password: password, fullName: "\(firstName)  \(secondName)")
+                                }
+                                
                             }
                             
                         }
@@ -83,11 +100,16 @@ struct RegistrationView: View {
                         Button {
                             dismiss()
                         } label: {
-                            HStack {
-                                Text("Already have an account?")
-                                Text("Sign in")
-                                    .bold()
+                            if isAddingOtherRower{
+                                Text("Cancel")
+                            }else{
+                                HStack {
+                                    Text("Already have an account?")
+                                    Text("Sign in")
+                                        .bold()
+                                }
                             }
+                            
                         }
 
                         
@@ -111,6 +133,6 @@ extension RegistrationView: AuthenticationFormProtocol {
 }
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        RegistrationView(isAddingOtherRower: true)
     }
 }
