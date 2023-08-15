@@ -7,15 +7,20 @@
 
 import SwiftUI
 
+/// A custom text input field with optional icon and specified keyboard type.
 struct InputTextFieldView: View {
-    
+    /// The binding to the text input value.
     @Binding var text: String
+    /// The placeholder text displayed when the field is empty.
     let placeholder: String
+    /// The type of keyboard to be displayed.
     let keyboardType: UIKeyboardType
+    /// The name of the SF Symbol to display as an icon.
     let sfSymbol: String?
-  
+    
+    /// The leading padding for the text field.
     private let textFieldLeading: CGFloat = 30
-
+    
     var body: some View {
         TextField(placeholder, text: $text)
             .frame(maxWidth: .infinity, minHeight: 44)
@@ -40,11 +45,10 @@ struct InputTextFieldView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             InputTextFieldView(text: .constant(""), placeholder: "Email", keyboardType: .emailAddress, sfSymbol: "envelope")
-                
-                .preview(with: "Text Input with sfsymbol")
+                .preview(with: "Text Input with SF Symbol")
             
             InputTextFieldView(text: .constant(""), placeholder: "First Name", keyboardType: .emailAddress, sfSymbol: nil)
-                .preview(with: "Input first name")
+                .preview(with: "Input First Name")
         }
     }
 }

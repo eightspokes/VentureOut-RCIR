@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-//ViewModel for SlideIn menu
+/// ViewModel for SlideIn menu
 @MainActor
 class SlideInMenuViewModel: ObservableObject {
     @Published var isPresented = false

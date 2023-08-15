@@ -11,32 +11,53 @@ struct RowersListView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     
     @State private var fetchedUsers: [User] = []
-
+    @State private var showRegisterRowerView = false
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(fetchedUsers.sorted {$0.fullName < $1.fullName }) { user in
+            VStack {
+                Button{
+                    self.showRegisterRowerView = true
+                    
+                } label: {
                     HStack{
-                        ProfilePictureView()
-                        VStack(alignment: .leading){
-                            Text(user.fullName)
-                                .font(.headline)
-                            Text(user.email)
-                                .font(.caption)
+                        Spacer()
+                        Text("Add new Rower")
+                    }
+                    .padding(.trailing)
+                   
+                }
+                
+                List {
+                    ForEach(fetchedUsers.sorted {$0.fullName < $1.fullName }) { user in
+                        HStack{
+                            ProfilePictureView()
+                            VStack(alignment: .leading){
+                                Text(user.fullName)
+                                    .font(.headline)
+                                Text(user.email)
+                                    .font(.caption)
+                            }
+                            
                         }
                         
+                        
                     }
+                   
+                }
+                .navigationBarTitle("Rowers")
+                .font(.title2)
+                .onAppear {
+                    fetchUsers()
                     
+                
+                
+                }
+                .sheet(isPresented: $showRegisterRowerView){
                     
+                    RegistrationView(isAddingOtherRower: true)
                 }
             }
-            .navigationBarTitle("Rowers")
-            .font(.title2)
             
-            .onAppear {
-                fetchUsers()
-            
-        }
             
         }
         

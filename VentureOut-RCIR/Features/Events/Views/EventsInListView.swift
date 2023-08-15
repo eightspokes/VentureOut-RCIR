@@ -1,14 +1,17 @@
 
 import SwiftUI
 
-struct EventsListView: View {
+struct EventsInListView: View {
+    /// A flag indicating whether this view is in preview mode.
+    var preview: Bool
+    
     @EnvironmentObject var eventViewModel: EventViewModel
     @EnvironmentObject var eventRegistrationViewModel: EventRegistrationViewModel
     
     @State private var formType: EventFormType?
     @State private var userType: ProfilePrivilege = .admin
     @State private var showNewEventView = false
-    
+   
     var body: some View {
         NavigationStack {
             VStack{
@@ -20,7 +23,7 @@ struct EventsListView: View {
                     
                     Spacer()
                     Button{
-                        formType = .new
+                        //formType = .new
                     }label: {
                         Image(systemName: "plus.circle.fill")
                             .imageScale(.large)
@@ -28,8 +31,9 @@ struct EventsListView: View {
                     }
                 }
                 List {
-                    ForEach(eventViewModel.events.sorted {$0.date < $1.date }) { event in
-                        ListViewRow(event: event, formType: $formType)
+                    ForEach(preview ? Event.sampleEvents : eventViewModel.events.sorted {$0.date < $1.date }) { event in
+                       
+                        EventView(event: event, formType: preview ? .constant(.new) : $formType)
                             .swipeActions {
                                 Button(role: .destructive) {
                                     eventViewModel.delete(event)
@@ -43,16 +47,16 @@ struct EventsListView: View {
                 
                 .sheet(item: $formType){ formType in
                     formType
-                    
+
                 }
             }
         }
     }
 }
-struct EventsListView_Previews: PreviewProvider {
+struct EventsInListView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsListView()
-           .environmentObject(EventViewModel(preview: true))
-           .environmentObject(EventRegistrationViewModel())
+        EventsInListView(preview: true)
+            .environmentObject(EventViewModel(preview: true))
+            .environmentObject(EventRegistrationViewModel(preview: true))
     }
 }

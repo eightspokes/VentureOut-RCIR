@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Represents a user with various attributes.
 struct User: Identifiable, Codable{
     let id: String
     let fullName: String
@@ -14,6 +15,7 @@ struct User: Identifiable, Codable{
     var privilege: ProfilePrivilege = ProfilePrivilege.admin
     var eventRegistrations = [String]()
     
+    /// Computes the initials of the user's full name.
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
         if let components = formatter.personNameComponents(from: fullName){
@@ -25,9 +27,7 @@ struct User: Identifiable, Codable{
 }
 
 enum ProfilePrivilege: String, CaseIterable, Codable {
-    
     case rower, admin
-    
     func stringValue() -> String {
         switch (self){
             

@@ -7,42 +7,40 @@
 
 import SwiftUI
 
-import SwiftUI
-
+/// A dynamic background view with animated moving circles.
 struct DynamicBackgroundView: View {
+    /// Properties for controlling animation speed, timer duration, and blur effect.
     private enum AnimationProperties {
         static let animationSpeed: Double = 4
         static let timerDuration: TimeInterval = 5
         static let blurRadius: CGFloat = 130
     }
+    
+    /// Animates the circles with easing.
     private func animateCircles() {
         withAnimation(.easeInOut(duration: AnimationProperties.animationSpeed)) {
             animator.animate()
         }
     }
     
+    /// The timer for controlling circle animation.
     @State private var timer = Timer.publish(
         every: AnimationProperties.timerDuration,
         on: .main,
         in: .common).autoconnect()
     
+    /// The observable object responsible for managing circle animation.
     @ObservedObject private var animator = CircleAnimator(colors: GradientColors.all)
-    
-    
     
     var body: some View {
         VStack {
-
             ZStack {
-               
                 ForEach(animator.circles) { circle in
                     MovingCircle(originOffset: circle.position)
-                            .foregroundColor(circle.color)
+                        .foregroundColor(circle.color)
                 }
             }
             .blur(radius: AnimationProperties.blurRadius)
-            
-            
             
             .background(GradientColors.backgroundColor)
             .onDisappear {
@@ -57,19 +55,18 @@ struct DynamicBackgroundView: View {
             }
         }
         .ignoresSafeArea(.all)
-        
-       
     }
     
+    /// Defines gradient colors for the dynamic background.
     private enum GradientColors {
         static var all: [Color] {
-            [
-                Color(#colorLiteral(red: 0.003799867816, green: 0.01174801588, blue: 0.07808648795, alpha: 1)),
-                Color(#colorLiteral(red: 0.147772789, green: 0.08009552211, blue: 0.3809506595, alpha: 1)),
-                Color(#colorLiteral(red: 0.5622407794, green: 0.4161503613, blue: 0.9545945525, alpha: 1)),
-                Color(#colorLiteral(red: 0.7909697294, green: 0.7202591896, blue: 0.9798423648, alpha: 1)),
-                Color(#colorLiteral(red: 0.7909697294, green: 0.7202591896, blue: 0.9798423648, alpha: 1)),
-            ]
+                        [
+                            Color(#colorLiteral(red: 0.003799867816, green: 0.01174801588, blue: 0.07808648795, alpha: 1)),
+                            Color(#colorLiteral(red: 0.147772789, green: 0.08009552211, blue: 0.3809506595, alpha: 1)),
+                            Color(#colorLiteral(red: 0.5622407794, green: 0.4161503613, blue: 0.9545945525, alpha: 1)),
+                            Color(#colorLiteral(red: 0.7909697294, green: 0.7202591896, blue: 0.9798423648, alpha: 1)),
+                            Color(#colorLiteral(red: 0.7909697294, green: 0.7202591896, blue: 0.9798423648, alpha: 1)),
+                        ]
         }
         
         static var backgroundColor: Color {
@@ -82,8 +79,8 @@ struct DynamicBackgroundView: View {
         }
     }
     
+    /// Defines a moving circle shape.
     private struct MovingCircle: Shape {
-        
         var originOffset: CGPoint
         
         var animatableData: CGPoint.AnimatableData {
@@ -106,6 +103,7 @@ struct DynamicBackgroundView: View {
         }
     }
     
+    /// Manages the animation and positions of the circles.
     private class CircleAnimator: ObservableObject {
         class Circle: Identifiable {
             internal init(position: CGPoint, color: Color) {
@@ -118,7 +116,6 @@ struct DynamicBackgroundView: View {
         }
         
         @Published private(set) var circles: [Circle] = []
-        
         
         init(colors: [Color]) {
             circles = colors.map({ color in

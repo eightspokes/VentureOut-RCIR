@@ -7,14 +7,15 @@
 
 import SwiftUI
 
+/// A view for user login.
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
-    @EnvironmentObject var authViewModel:  AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     var body: some View {
-        NavigationStack{
-            VStack(spacing: 15){
+        NavigationStack {
+            VStack(spacing: 15) {
                 Image("rowers")
                     .resizable()
                     .scaledToFit()
@@ -23,30 +24,25 @@ struct LoginView: View {
                 Text("Venture Out")
                     .font(.custom("Sacramento-Regular", size: 35, relativeTo: .title))
                     .padding(.vertical, -70)
-               
                 
                 InputTextFieldView(text: $email, placeholder: "Email", keyboardType: .emailAddress, sfSymbol: "envelope")
                     .autocapitalization(.none)
                 InputPasswordView(password: $password,  placeholder: "Password", sfSymbol: "lock")
                 
-                Button{
-                    //TODO: To be implemented
+                Button {
+                    // TODO: Implement forgot password functionality
                 } label: {
-                    HStack(){
+                    HStack {
                         Spacer()
                         Text("Forgot Password?")
                             .font(.footnote.bold())
-                            
                     }
                 }
-
                 
-                ButtonView(title: "Sign in"){
-                    
-                    Task{
+                ButtonView(title: "Sign in") {
+                    Task {
                         try await authViewModel.signIn(withEmail: email, password: password)
                     }
-                    
                 }
                 .padding(.vertical)
                 .disabled(!formIsValid)
@@ -54,12 +50,11 @@ struct LoginView: View {
                 
                 Spacer()
                 
-                
-                //SIGN UP button
-                NavigationLink{
+                // SIGN UP button
+                NavigationLink {
                     RegistrationView(isAddingOtherRower: false)
                         .navigationBarBackButtonHidden(true)
-                }label: {
+                } label: {
                     HStack {
                         Text("Don't have an account?")
                         Text("Sign up")
@@ -68,17 +63,18 @@ struct LoginView: View {
                 }
             }
             .padding(.horizontal)
-            
         }
     }
 }
 
+// MARK: - AuthenticationFormProtocol Extension
+
 extension LoginView: AuthenticationFormProtocol {
     var formIsValid: Bool {
         return !email.isEmpty
-        && email.contains("@")
-        && !password.isEmpty
-        && password.count > 5
+            && email.contains("@")
+            && !password.isEmpty
+            && password.count > 5
     }
 }
 
@@ -87,3 +83,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+

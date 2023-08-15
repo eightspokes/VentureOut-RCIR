@@ -14,66 +14,54 @@ struct EventRegistrationForm: View {
     @EnvironmentObject var authViewModel:  AuthViewModel
     var event: Event
     
-   
     var body: some View {
-        
         NavigationStack {
             VStack {
-                
                 Form {
                     Section {
                         Text(event.eventType.rawValue.prefix(1).capitalized + event.eventType.rawValue.dropFirst())
-                            } header: {
-                            Text("Event Type")
-                        }
-                    Section("Date/Time"){
+                    } header: {
+                        Text("Event Type")
+                    }
+                    Section("Date/Time") {
                         EventDateView(event: event)
                     }
-                    if !event.note.isEmpty{
-                        Section("Note"){
+                    if !event.note.isEmpty {
+                        Section("Note") {
                             Text(event.note)
                         }
                     }
-                        
-                    Section("Note to  Us (optional)"){
-                        TextField("Type here",text: $noteToAdmin, axis: .vertical)
-                    
+                    Section("Note to Us (optional)") {
+                        TextField("Type here", text: $noteToAdmin, axis: .vertical)
                     }
                     
-                        
-                   //TODO: Try to refactor this
                     Section(footer:
-                                HStack {
-                        Spacer()
-                        Button {
-                            
-                            if let currentUser =
-                               
-                                authViewModel.currentUser{
-                                print("Current user, it \(currentUser)")
-                                if let currentUser = authViewModel.currentUser{
+                        HStack {
+                            Spacer()
+                            Button {
+                                if let currentUser = authViewModel.currentUser {
+                                  //  print("******** EventRegistrations before adding : \(eventRegistrationViewModel.eventRegistrations.count)")
+                                   // print("Events in event before adding: \(event.eventRegistrations.count)")
                                     eventRegistrationViewModel.add(event: event, user: currentUser, noteToAdmin: noteToAdmin)
+                                 //   print("Events in event after adding: \(event.eventRegistrations.count)")
+                                 //   print("******** EventRegistrations after :  \(eventRegistrationViewModel.eventRegistrations.count)")
+                                } else {
+                                    print("Can't add current user, it is nil")
                                 }
-                                
-                            }else{
-                                print("Can't add current user, it is nil" )
+                                dismiss()
+                            } label: {
+                                Text("Submit")
                             }
-                            
-                            dismiss()
-                        } label: {
-                            Text("Submit")
+                            .buttonStyle(.borderedProminent)
+                            Spacer()
                         }
-                        .buttonStyle(.borderedProminent)
-                        Spacer()
-                    }
-                    ){}
+                    ) {}
                 }
             }
             .navigationTitle("Event Registration")
-            
-            .toolbar{
-                ToolbarItem(placement: .navigationBarLeading){
-                    Button("Cancel"){
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
                         dismiss()
                     }
                 }

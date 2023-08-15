@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DaysEventsListView: View {
+struct EventsInDayView: View {
     @EnvironmentObject var authViewModel:  AuthViewModel
     @EnvironmentObject var eventViewModel:  EventViewModel
     @EnvironmentObject var eventRegistrationViewModel:  EventRegistrationViewModel
@@ -21,8 +21,9 @@ struct DaysEventsListView: View {
                 if let dateSelected {
                     let foundEvents = eventViewModel.events.filter { $0.date.startOfDay == dateSelected.date!.startOfDay }
                     List{
+                        // Display events for date selected
                         ForEach(foundEvents) { event in
-                            ListViewRow(event: event, formType: $formType)
+                            EventView(event: event, formType: $formType)
                                 .swipeActions{
                                     Button(role: .destructive){
                                         eventRegistrationViewModel.deleteRegistrationsBy(event)
@@ -44,7 +45,7 @@ struct DaysEventsListView: View {
     }
 }
 
-struct DaysEventsListView_Previews: PreviewProvider {
+struct EventsInDayView_Previews: PreviewProvider {
     static var dateComponents: DateComponents {
         var dateComponents = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute], from: Date())
         dateComponents.timeZone = TimeZone.current
@@ -53,7 +54,7 @@ struct DaysEventsListView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        DaysEventsListView(dateSelected: .constant(dateComponents), privilage: ProfilePrivilege.admin)
+        EventsInDayView(dateSelected: .constant(dateComponents), privilage: ProfilePrivilege.admin)
            .environmentObject(EventViewModel(preview: true))
     }
 }

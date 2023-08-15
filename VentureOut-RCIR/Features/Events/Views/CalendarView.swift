@@ -1,12 +1,14 @@
 //
 //  CalendarView.swift
 //  VentureOut-RCIR
-//
+// This technique was described by Steward Lynch
+// Learn more at: https://www.youtube.com/c/stewartlynch
+// Follow on Twitter: https://twitter.com/stewartlynch?lang=en
 //  Created by Roman on 7/3/23.
 //
 
 import SwiftUI
-
+// A SwiftUI view wrapper for the UIKit `UICalendarView` to display events on a calendar.
 struct CalendarView: UIViewRepresentable {
     
     let interval: DateInterval

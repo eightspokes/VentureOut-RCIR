@@ -51,59 +51,64 @@ public class EventRegistrationRepository: ObservableObject {
                         print("No documents")
                         return
                     }
+                
                     self?.eventsRegistrations = documents.compactMap { queryDocumentSnapshot in
                         do {
-                            return try queryDocumentSnapshot.data(as: EventRegistration.self)
+                            let result = try queryDocumentSnapshot.data(as: EventRegistration.self)
+                           // print("!!!!!!!!!!!!!! Subscribed After map \(self!.eventsRegistrations.count)")
+                            return result
+                            
                         }
                         catch {
                             print("Error while trying to map document \(queryDocumentSnapshot.documentID): \(error.localizedDescription)")
                             return nil
                         }
+                        
                     }
                 }
         }
     }
     func addEventRegistration(_ eventRegistration: EventRegistration) throws {
-        
-        let collectionRef = firestore.collection(EventRegistration.collectionName)
-        
-        // Add the document to Firestore
-        var newEventRegistrationRef: DocumentReference?
-        
-        try newEventRegistrationRef = collectionRef.addDocument(from: eventRegistration) { [self] error in
-            if let error = error {
-                print("Error adding document: \(error)")
-            } else {
-                // The document has been added successfully
-                // The ID of the newly created document will be available in eventRegistration.id
-                // print("This is my new event ref\(newEventRegistrationRef?.documentID ?? "No Event ref")")
-                let userRef = firestore.collection(User.collectionName).document(eventRegistration.userId)
-                let eventRef = firestore.collection(Event.collectionName).document(eventRegistration.eventId)
-                
-                print("\(userRef.documentID )")
-                print("\(eventRef.documentID)")
-                
-                guard let newEventRegistrationId = newEventRegistrationRef else{
-                    print(" Event registration failed - no event id ")
-                    return
-                }
-                userRef.updateData(["eventRegistrations": FieldValue.arrayUnion([newEventRegistrationId.documentID])]) { error in
-                    if let error = error {
-                        print("Error adding new event registration  to to User's eventRegistrations: \(error)")
-                    } else {
-                        print("New pevent registration was added successfully to User's  eventRegistration!")
-                    }
-                }
-                eventRef.updateData(["eventRegistrations": FieldValue.arrayUnion([newEventRegistrationId.documentID])]) { error in
-                    if let error = error {
-                        print("Error adding new event registration to to Event's eventRegistrations: \(error)")
-                    } else {
-                        print("New pevent registration was added successfully to Event's  eventRegistration!")
-                    }
-                }
-            }
-        }
-    }
+          
+          let collectionRef = firestore.collection(EventRegistration.collectionName)
+          
+          // Add the document to Firestore
+          var newEventRegistrationRef: DocumentReference?
+          
+          try newEventRegistrationRef = collectionRef.addDocument(from: eventRegistration) { [self] error in
+              if let error = error {
+                  print("Error adding document: \(error)")
+              } else {
+                  // The document has been added successfully
+                  // The ID of the newly created document will be available in eventRegistration.id
+                  // print("This is my new event ref\(newEventRegistrationRef?.documentID ?? "No Event ref")")
+                  let userRef = firestore.collection(User.collectionName).document(eventRegistration.userId)
+                  let eventRef = firestore.collection(Event.collectionName).document(eventRegistration.eventId)
+                  
+                  print("\(userRef.documentID )")
+                  print("\(eventRef.documentID)")
+                  
+                  guard let newEventRegistrationId = newEventRegistrationRef else{
+                      print(" Event registration failed - no event id ")
+                      return
+                  }
+                  userRef.updateData(["eventRegistrations": FieldValue.arrayUnion([newEventRegistrationId.documentID])]) { error in
+                      if let error = error {
+                          print("Error adding new event registration  to to User's eventRegistrations: \(error)")
+                      } else {
+                          print("New pevent registration was added successfully to User's  eventRegistration!")
+                      }
+                  }
+                  eventRef.updateData(["eventRegistrations": FieldValue.arrayUnion([newEventRegistrationId.documentID])]) { error in
+                      if let error = error {
+                          print("Error adding new event registration to to Event's eventRegistrations: \(error)")
+                      } else {
+                          print("New pevent registration was added successfully to Event's  eventRegistration!")
+                      }
+                  }
+              }
+          }
+      }
     func updateEventRegistration(_ eventRegistration: EventRegistration) throws {
         guard let documentId = eventRegistration.id else{
             fatalError("Event \(eventRegistration.note) has no document ID.")
@@ -124,7 +129,7 @@ public class EventRegistrationRepository: ObservableObject {
             .document(eventRegistrationId)
             .delete()
         //Remove eventRegistration from User
-        removeElementFromEventRegistrations(collection: User.collectionName, eventDocumentID: eventRegistration.userId, elementToRemove: eventRegistrationId)
+        removeElementFromEventRegistrations(collection: User.collectionName, eventDocumentID: eventRegistration.user.id, elementToRemove: eventRegistrationId)
         //Remove eventRegistration from Event
         removeElementFromEventRegistrations(collection: Event.collectionName, eventDocumentID: eventRegistration.eventId, elementToRemove: eventRegistrationId)
     }
