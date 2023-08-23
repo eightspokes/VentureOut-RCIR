@@ -27,7 +27,7 @@ struct AddNewRowerView: View {
                             .scaledToFit()
                             .frame(width: 200, height: 200)
                             .padding(.vertical, 32)
-                        Text("Venture Out")
+                        Text("RCIR")
                             .font(.custom("Sacramento-Regular", size: 35, relativeTo: .title))
                             .padding(.vertical, -70)
                             //.foregroundColor(.white)

@@ -6,6 +6,9 @@ struct EventsInCalendarView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var eventRegistrationViewModel: EventRegistrationViewModel
     
+    
+    @State private var id = UUID()
+    
     @State private var dateSelected: DateComponents?
     @State private var displayEvents: Bool = false
     @State private var formType: EventFormType?
@@ -36,6 +39,8 @@ struct EventsInCalendarView: View {
                 displayEvents: $displayEvents
             )
             
+            .id(id)
+            
             Image("rowers")
                 .resizable()
                 .scaledToFit()
@@ -46,6 +51,9 @@ struct EventsInCalendarView: View {
         .sheet(isPresented: $displayEvents) {
             EventsInDayView(dateSelected: $dateSelected, privilage: ProfilePrivilege.admin)
                 .presentationDetents([.medium, .large])
+        }
+        .onAppear{
+            id = UUID()
         }
     }
 }

@@ -39,29 +39,30 @@ struct BaseMenuView: View {
                             }
                             
                             Spacer()
-                            Text("Venture Out")
+                            Text("RCIR")
                                 .font(.custom("Sacramento-Regular", size: 25, relativeTo: .title))
                         }
                         .padding(.top)
                         .padding(.horizontal)
                         
                         TabView {
+                            
+                            //TODO: Bug 
                             EventsInListView(preview: false)
                                 .tabItem {
                                     Label("Event List", systemImage: "filemenu.and.selection")
                                 }
-                           
                             EventsInCalendarView()
                                 .tabItem {
                                     Label("Calendar", systemImage: "calendar")
                                 }
-                           
+
                             RowersListView()
                                 .tabItem {
                                     Label("Rowers", systemImage:  "figure.rower")
                                 }
                             
-                            Text("Weather")
+                            CurrentWeatherView()
                                 .tabItem {
                                     Label("Weather", systemImage: "cloud.sun.rain")
                             }

@@ -2,7 +2,9 @@ import SwiftUI
 
 /// A view representing a single row in the list view.
 struct EventView: View {
-    @State var event: Event
+    
+    // This event, how do I make it persistant.
+    var event: Event
     
     @Binding var formType: EventFormType?
     
@@ -41,8 +43,18 @@ struct EventView: View {
                 } label: {
                     HStack() {
                         Image(systemName: "person")
-                        Text("\(event.eventRegistrations.count) ")
-                        Text(event.eventRegistrations.count == 1 ? "rower" : "rowers")
+                        if let event = event, let id = event.id {
+                            if let eventByID = eventViewModel.getEventByID(id) {
+                                let registrationCount = eventByID.eventRegistrations.count
+                                
+                                HStack {
+                                    Text("\(registrationCount)")
+                                   
+                                    Text(registrationCount == 1 ? "rower" : "rowers")
+                                }
+                            }
+                        }
+                        
                     }
                     .background(Color.clear)
                 }
@@ -95,7 +107,7 @@ struct EventView: View {
             RegisterRowersView(preview: false, event: event)
         }
         .sheet(isPresented: $showRowersRegistered) {
-            RowersRegisteredForEventView(eventRegistrations: event.eventRegistrations)
+            RowersRegisteredForEventView(event: event)
         }
         .alert(
             "Please confirm that you want to sign out from \(event.note) on \(event.date.formatted())",

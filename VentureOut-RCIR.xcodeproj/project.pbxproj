@@ -27,6 +27,13 @@
 		3079A67E2A8AAF5700278877 /* AddNewRowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A67D2A8AAF5700278877 /* AddNewRowerView.swift */; };
 		309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830502A3DCFF300F50658 /* InputPasswordView.swift */; };
 		309830532A3DDA2900F50658 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309830522A3DDA2900F50658 /* ButtonView.swift */; };
+		30AEFD0A2A9632D20083F5A4 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEFD092A9632D20083F5A4 /* WeatherManager.swift */; };
+		30AEFD0D2A9659E10083F5A4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEFD0C2A9659E10083F5A4 /* ModelData.swift */; };
+		30AEFD0F2A965A230083F5A4 /* weatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = 30AEFD0E2A965A230083F5A4 /* weatherData.json */; };
+		30AEFD112A965C340083F5A4 /* RoundDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEFD102A965C340083F5A4 /* RoundDouble.swift */; };
+		30AEFD132A9670780083F5A4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEFD122A9670780083F5A4 /* LoadingView.swift */; };
+		30AEFD152A967F2B0083F5A4 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEFD142A967F2B0083F5A4 /* CornerRadius.swift */; };
+		30AEFD182A96816B0083F5A4 /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AEFD172A96816B0083F5A4 /* WeatherRow.swift */; };
 		30B30B052A798C8700CB6D80 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 30B30B042A798C8700CB6D80 /* Factory */; };
 		30B30B092A798D1100CB6D80 /* Firebase+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B082A798D1100CB6D80 /* Firebase+Injection.swift */; };
 		30B30B192A79A95A00CB6D80 /* EventRepository+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B30B182A79A95A00CB6D80 /* EventRepository+Injection.swift */; };
@@ -70,6 +77,7 @@
 		30E8443D2A8B9E800030AEF7 /* ObservableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8443C2A8B9E800030AEF7 /* ObservableEvent.swift */; };
 		30F8B63C2A4496DA00B761E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8B63B2A4496DA00B761E4 /* LoginView.swift */; };
 		30F8B63F2A44C19F00B761E4 /* PreviewLayoutModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8B63E2A44C19F00B761E4 /* PreviewLayoutModifier.swift */; };
+		30FE466B2A93E2DF00B5F14D /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE466A2A93E2DF00B5F14D /* CurrentWeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +118,13 @@
 		309830502A3DCFF300F50658 /* InputPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPasswordView.swift; sourceTree = "<group>"; };
 		309830522A3DDA2900F50658 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		30AEAAFB2A489ADA00BC635C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		30AEFD092A9632D20083F5A4 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		30AEFD0C2A9659E10083F5A4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		30AEFD0E2A965A230083F5A4 /* weatherData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = weatherData.json; sourceTree = "<group>"; };
+		30AEFD102A965C340083F5A4 /* RoundDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDouble.swift; sourceTree = "<group>"; };
+		30AEFD122A9670780083F5A4 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		30AEFD142A967F2B0083F5A4 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
+		30AEFD172A96816B0083F5A4 /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
 		30B30B082A798D1100CB6D80 /* Firebase+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Injection.swift"; sourceTree = "<group>"; };
 		30B30B182A79A95A00CB6D80 /* EventRepository+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventRepository+Injection.swift"; sourceTree = "<group>"; };
 		30B30B1A2A79B37500CB6D80 /* EventRegistrationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRegistrationForm.swift; sourceTree = "<group>"; };
@@ -140,8 +155,10 @@
 		30DCBFC82A48BA3600F1D621 /* Sacramento-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sacramento-Regular.ttf"; sourceTree = "<group>"; };
 		30DCBFCA2A48C94500F1D621 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		30E8443C2A8B9E800030AEF7 /* ObservableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableEvent.swift; sourceTree = "<group>"; };
+		30E8443E2A8D68E20030AEF7 /* VentureOut-RCIR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "VentureOut-RCIR.entitlements"; sourceTree = "<group>"; };
 		30F8B63B2A4496DA00B761E4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		30F8B63E2A44C19F00B761E4 /* PreviewLayoutModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayoutModifier.swift; sourceTree = "<group>"; };
+		30FE466A2A93E2DF00B5F14D /* CurrentWeatherView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				3012080C2A50BEA7009C9EAC /* DateExtension.swift */,
+				30AEFD102A965C340083F5A4 /* RoundDouble.swift */,
+				30AEFD142A967F2B0083F5A4 /* CornerRadius.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +252,25 @@
 				30DCBFC82A48BA3600F1D621 /* Sacramento-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		30AEFD0B2A9659990083F5A4 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				30AEFD0C2A9659E10083F5A4 /* ModelData.swift */,
+				30AEFD0E2A965A230083F5A4 /* weatherData.json */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		30AEFD162A9681590083F5A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				30AEFD172A96816B0083F5A4 /* WeatherRow.swift */,
+				30FE466A2A93E2DF00B5F14D /* CurrentWeatherView.swift */,
+				30AEFD122A9670780083F5A4 /* LoadingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		30B30B062A798CC700CB6D80 /* Firebase */ = {
@@ -423,6 +461,7 @@
 		30D3A8CB2A3CCF4F0038C8D6 /* VentureOut-RCIR */ = {
 			isa = PBXGroup;
 			children = (
+				30E8443E2A8D68E20030AEF7 /* VentureOut-RCIR.entitlements */,
 				30AEAAFB2A489ADA00BC635C /* Info.plist */,
 				3012080B2A50BEA7009C9EAC /* Extensions */,
 				30F8B63D2A44C16400B761E4 /* Modifiers */,
@@ -484,6 +523,7 @@
 				30B30B222A7AC9BF00CB6D80 /* EventRegistration */,
 				30B30B0D2A79961900CB6D80 /* Profile */,
 				3079A66F2A8588A300278877 /* RowersTab */,
+				30FE46692A93E2C100B5F14D /* Weather */,
 				30D3A8CC2A3CCF4F0038C8D6 /* AppEntry.swift */,
 				30CC9D0E2A5C75D600CCD505 /* BaseMenuView.swift */,
 			);
@@ -496,6 +536,24 @@
 				30F8B63E2A44C19F00B761E4 /* PreviewLayoutModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		30FE46692A93E2C100B5F14D /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				30AEFD162A9681590083F5A4 /* Views */,
+				30AEFD0B2A9659990083F5A4 /* Preview */,
+				30FE466C2A94E4EC00B5F14D /* Managers */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		30FE466C2A94E4EC00B5F14D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				30AEFD092A9632D20083F5A4 /* WeatherManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -623,6 +681,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AEFD0F2A965A230083F5A4 /* weatherData.json in Resources */,
 				30D3A8D42A3CCF510038C8D6 /* Preview Assets.xcassets in Resources */,
 				30C701062A4CF06100FD4ED5 /* GoogleService-Info.plist in Resources */,
 				30D3A8D12A3CCF510038C8D6 /* Assets.xcassets in Resources */,
@@ -654,12 +713,14 @@
 				309830512A3DCFF300F50658 /* InputPasswordView.swift in Sources */,
 				30B30B2C2A7AF5B900CB6D80 /* EventRegistrationViewModel.swift in Sources */,
 				30E8443D2A8B9E800030AEF7 /* ObservableEvent.swift in Sources */,
+				30AEFD182A96816B0083F5A4 /* WeatherRow.swift in Sources */,
 				301208262A532BB0009C9EAC /* CalendarView.swift in Sources */,
 				30C700D92A4A004100FD4ED5 /* ProfileView.swift in Sources */,
 				3007E58C2A71932E00BF568C /* SlideInMenuViewModel.swift in Sources */,
 				30CC9D0F2A5C75D600CCD505 /* BaseMenuView.swift in Sources */,
 				3079A67E2A8AAF5700278877 /* AddNewRowerView.swift in Sources */,
 				3012080A2A50BDC5009C9EAC /* EventsInCalendarView.swift in Sources */,
+				30AEFD152A967F2B0083F5A4 /* CornerRadius.swift in Sources */,
 				30B30B1B2A79B37500CB6D80 /* EventRegistrationForm.swift in Sources */,
 				30CED5372A7488A400141DA0 /* EventFormView.swift in Sources */,
 				301208202A50C2BF009C9EAC /* EventFormType.swift in Sources */,
@@ -676,7 +737,9 @@
 				30B30B1D2A79BB3800CB6D80 /* EventDateView.swift in Sources */,
 				301208222A50C547009C9EAC /* DynamicBackgroundView.swift in Sources */,
 				30B30B212A7ABBC300CB6D80 /* EventRegistration.swift in Sources */,
+				30AEFD0D2A9659E10083F5A4 /* ModelData.swift in Sources */,
 				309830532A3DDA2900F50658 /* ButtonView.swift in Sources */,
+				30AEFD112A965C340083F5A4 /* RoundDouble.swift in Sources */,
 				3007E5932A71974800BF568C /* EventRepository.swift in Sources */,
 				301208152A50C277009C9EAC /* EventView.swift in Sources */,
 				30C700E22A4A43DE00FD4ED5 /* AuthViewModel.swift in Sources */,
@@ -684,14 +747,17 @@
 				3012080F2A50BEE7009C9EAC /* EventViewModel.swift in Sources */,
 				3079A6732A85890700278877 /* RowersListView.swift in Sources */,
 				30B30B192A79A95A00CB6D80 /* EventRepository+Injection.swift in Sources */,
+				30FE466B2A93E2DF00B5F14D /* CurrentWeatherView.swift in Sources */,
 				30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */,
 				301208162A50C277009C9EAC /* EventsInListView.swift in Sources */,
 				30BADD302A4F897F00014DF2 /* Event.swift in Sources */,
 				301208282A53A348009C9EAC /* EventsInDayView.swift in Sources */,
 				30D3A9072A3CFA0C0038C8D6 /* InputTextFieldView.swift in Sources */,
 				3079A6772A86E1C900278877 /* RegisterRowersView.swift in Sources */,
+				30AEFD0A2A9632D20083F5A4 /* WeatherManager.swift in Sources */,
 				30B30B092A798D1100CB6D80 /* Firebase+Injection.swift in Sources */,
 				300119B62A658A3000677D32 /* ProfilePictureView.swift in Sources */,
+				30AEFD132A9670780083F5A4 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +913,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "VentureOut-RCIR/VentureOut-RCIR.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VentureOut-RCIR/Preview Content\"";
@@ -878,6 +945,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "VentureOut-RCIR/VentureOut-RCIR.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"VentureOut-RCIR/Preview Content\"";

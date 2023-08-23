@@ -31,6 +31,11 @@ class EventViewModel: ObservableObject {
         self.preview = preview
         fetchEvents()
     }
+    /// Needed to provide updated version of event to views 
+    func getEventByID(_ id: String) -> Event? {
+        return events.first(where: { $0.id == id })
+    }
+    
     
     /// Fetches the events based on the preview mode.
     func fetchEvents() {
@@ -91,4 +96,6 @@ class EventViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
     }
+    
+    
 }

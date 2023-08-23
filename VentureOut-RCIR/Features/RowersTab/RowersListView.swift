@@ -48,8 +48,6 @@ struct RowersListView: View {
                 .font(.title2)
                 .onAppear {
                     fetchUsers()
-                    
-                
                 
                 }
                 .sheet(isPresented: $showRegisterRowerView){

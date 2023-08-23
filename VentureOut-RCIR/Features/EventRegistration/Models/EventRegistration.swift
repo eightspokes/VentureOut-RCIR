@@ -18,12 +18,12 @@ import Foundation
 struct EventRegistration: Codable, Identifiable{
     
     @DocumentID var id: String?
+    let user: User
     var eventId: String
     var eventType: Event.EventType
     var date: Date
     var note: String
     
-    let user: User
     let userId: String
     let fullName: String
     let email: String
@@ -32,20 +32,27 @@ struct EventRegistration: Codable, Identifiable{
     
     init(id: String? = nil,
          user: User,
+         
          eventId: String,
          eventType: Event.EventType,
          date: Date,
          note: String,
+        
          userId: String,
          fullName: String,
          email: String,
          noteToAdmin: String) {
-        self.user = user
+        
         self.id = id
+        self.user = user
+      
+        
         self.eventId = eventId
         self.eventType = eventType
         self.date = date
         self.note = note
+        
+        
         self.userId = userId
         self.fullName = fullName
         self.email = email
@@ -58,7 +65,7 @@ struct EventRegistration: Codable, Identifiable{
                           userId: "John Doe",
                           fullName: "john.doe@example.com",
                           email: "Please approve my registration.", noteToAdmin: "Hello"),
-        EventRegistration(id: "",user: User.MOCK_USER, eventId: "", eventType: .rowing,
+        EventRegistration(id: "",user: User.MOCK_USER,  eventId: "", eventType: .rowing,
                           date: Date(),
                           note: "Some note ",
                           userId: "John Doe",

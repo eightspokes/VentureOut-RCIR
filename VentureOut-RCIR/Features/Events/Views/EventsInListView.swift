@@ -23,7 +23,7 @@ struct EventsInListView: View {
                     
                     Spacer()
                     Button{
-                        //formType = .new
+                        formType = .new
                     }label: {
                         Image(systemName: "plus.circle.fill")
                             .imageScale(.large)
