@@ -56,6 +56,8 @@ struct RegisterRowersView: View {
                                 Button {
                                     if eventRegistration == nil {
                                         eventRegistrationViewModel.add(event: event, user: user, noteToAdmin: " Registered by \(authViewModel.currentUser!.fullName)")
+                                        
+                    
                                     } else {
                                         if let eventRegistration = eventRegistrationViewModel.isRegistered(user, for: event) {
                                             eventRegistrationViewModel.delete(eventRegistration)

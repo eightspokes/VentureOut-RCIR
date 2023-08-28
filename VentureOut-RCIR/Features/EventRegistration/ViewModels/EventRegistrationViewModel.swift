@@ -90,6 +90,9 @@ class EventRegistrationViewModel: ObservableObject {
         
         let eventRegistration = EventRegistration( user: user, eventId: eventId, eventType: event.eventType, date: event.date, note: event.note, userId: user.id, fullName: user.fullName, email: user.email, noteToAdmin: noteToAdmin)
         
+        
+        
+        
         if preview{
             eventRegistrations.append(eventRegistration)
         }else{
@@ -98,6 +101,38 @@ class EventRegistrationViewModel: ObservableObject {
                 try eventRegistrationRepository.addEventRegistration(eventRegistration)
                   errorMessage = nil
                   changedEvent = event
+                // Send an email that registration was added
+                
+                let subject = "Registration for Rowing at RCIR"
+                let registrationMessage = """
+                Dear \(user.fullName),
+                We are writing to confirm your registration for rowing at Rochester Community Inclusive Rowing on \(String(describing: event.dateComponents.date)) at  \(String(describing: event.dateComponents.hour)).\(String(describing: event.dateComponents.minute)).
+                We are thrilled that you have chosen to join us for this exciting and inclusive activity.
+
+                
+                Please make sure to arrive at least 10 minutes before the scheduled start time to ensure a smooth check-in process and to receive any necessary instructions.
+                Our team of dedicated instructors and volunteers will be there to assist you throughout the session.
+
+                What to bring:
+
+                Comfortable workout attire
+                A reusable water bottle to stay hydrated
+                If you have any specific questions or if there have been any changes to your availability, please don't hesitate to contact our registration team at [Contact Email] or [Contact Phone Number].
+
+                We look forward to welcoming you to the Rochester Community Inclusive Rowing community and sharing an enjoyable rowing experience with you. Your participation contributes to the inclusivity and vibrancy of our rowing program, and we're excited to have you on board.
+
+                Thank you for choosing Rochester Community Inclusive Rowing. We can't wait to see you on the water!
+
+                Best regards,
+
+                [Your Name]
+                [Your Title]
+                Rochester Community Inclusive Rowing
+                [Contact Email]
+                [Contact Phone Number]
+                """
+               
+                EmailController.shared.sendEmail(subject: subject, body: registrationMessage, to: user.email)
                 
                 }
                 catch {

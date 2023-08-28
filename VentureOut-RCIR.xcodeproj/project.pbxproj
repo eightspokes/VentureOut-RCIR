@@ -19,6 +19,7 @@
 		301208222A50C547009C9EAC /* DynamicBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208212A50C547009C9EAC /* DynamicBackgroundView.swift */; };
 		301208262A532BB0009C9EAC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208252A532BAF009C9EAC /* CalendarView.swift */; };
 		301208282A53A348009C9EAC /* EventsInDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208272A53A348009C9EAC /* EventsInDayView.swift */; };
+		304D879F2A9D23C200BA1C88 /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304D879E2A9D23C200BA1C88 /* EmailService.swift */; };
 		3079A6712A8588F000278877 /* RoweView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6702A8588F000278877 /* RoweView.swift */; };
 		3079A6732A85890700278877 /* RowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6722A85890700278877 /* RowersListView.swift */; };
 		3079A6772A86E1C900278877 /* RegisterRowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6762A86E1C900278877 /* RegisterRowersView.swift */; };
@@ -110,6 +111,7 @@
 		301208212A50C547009C9EAC /* DynamicBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicBackgroundView.swift; sourceTree = "<group>"; };
 		301208252A532BAF009C9EAC /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		301208272A53A348009C9EAC /* EventsInDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsInDayView.swift; sourceTree = "<group>"; };
+		304D879E2A9D23C200BA1C88 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
 		3079A6702A8588F000278877 /* RoweView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoweView.swift; sourceTree = "<group>"; };
 		3079A6722A85890700278877 /* RowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowersListView.swift; sourceTree = "<group>"; };
 		3079A6762A86E1C900278877 /* RegisterRowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRowersView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,14 @@
 				30CED5362A7488A300141DA0 /* EventFormView.swift */,
 			);
 			path = DualPurpuseForm;
+			sourceTree = "<group>";
+		};
+		304D879D2A9D239900BA1C88 /* EmailService */ = {
+			isa = PBXGroup;
+			children = (
+				304D879E2A9D23C200BA1C88 /* EmailService.swift */,
+			);
+			path = EmailService;
 			sourceTree = "<group>";
 		};
 		3079A66F2A8588A300278877 /* RowersTab */ = {
@@ -518,6 +528,7 @@
 		30F8B6322A44957100B761E4 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				304D879D2A9D239900BA1C88 /* EmailService */,
 				30B30B0B2A79960100CB6D80 /* Authentication */,
 				30B30B0C2A79960B00CB6D80 /* Events */,
 				30B30B222A7AC9BF00CB6D80 /* EventRegistration */,
@@ -750,6 +761,7 @@
 				30FE466B2A93E2DF00B5F14D /* CurrentWeatherView.swift in Sources */,
 				30B896062A54852500B7685D /* SlideInMenuView.swift in Sources */,
 				301208162A50C277009C9EAC /* EventsInListView.swift in Sources */,
+				304D879F2A9D23C200BA1C88 /* EmailService.swift in Sources */,
 				30BADD302A4F897F00014DF2 /* Event.swift in Sources */,
 				301208282A53A348009C9EAC /* EventsInDayView.swift in Sources */,
 				30D3A9072A3CFA0C0038C8D6 /* InputTextFieldView.swift in Sources */,
