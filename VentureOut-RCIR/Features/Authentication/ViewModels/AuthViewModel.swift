@@ -11,6 +11,10 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseFirestoreSwift
 import Factory
+
+
+
+
 protocol AuthenticationFormProtocol{
     var formIsValid: Bool { get }
 }

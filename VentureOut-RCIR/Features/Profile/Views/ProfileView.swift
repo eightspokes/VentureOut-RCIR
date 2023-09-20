@@ -25,9 +25,7 @@ struct ProfileView: View {
                         HStack {
                             Text(authViewModel.currentUser?.fullName ?? "Name not available")
                                 .bold()
-                            if let privilege = authViewModel.currentUser?.privilege, privilege == .admin {
-                                Text("(admin)")
-                            }
+                            Text(authViewModel.currentUser?.profilePrivilegesAsString ?? "")
                         }
                         Text(authViewModel.currentUser?.email ?? "Email not available")
                             .font(.footnote)

@@ -20,7 +20,6 @@
 		301208262A532BB0009C9EAC /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208252A532BAF009C9EAC /* CalendarView.swift */; };
 		301208282A53A348009C9EAC /* EventsInDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301208272A53A348009C9EAC /* EventsInDayView.swift */; };
 		304D879F2A9D23C200BA1C88 /* EmailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304D879E2A9D23C200BA1C88 /* EmailService.swift */; };
-		3079A6712A8588F000278877 /* RoweView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6702A8588F000278877 /* RoweView.swift */; };
 		3079A6732A85890700278877 /* RowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6722A85890700278877 /* RowersListView.swift */; };
 		3079A6772A86E1C900278877 /* RegisterRowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6762A86E1C900278877 /* RegisterRowersView.swift */; };
 		3079A6792A884DC900278877 /* RowersRegisteredForEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3079A6782A884DC900278877 /* RowersRegisteredForEventView.swift */; };
@@ -112,7 +111,6 @@
 		301208252A532BAF009C9EAC /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		301208272A53A348009C9EAC /* EventsInDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsInDayView.swift; sourceTree = "<group>"; };
 		304D879E2A9D23C200BA1C88 /* EmailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailService.swift; sourceTree = "<group>"; };
-		3079A6702A8588F000278877 /* RoweView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoweView.swift; sourceTree = "<group>"; };
 		3079A6722A85890700278877 /* RowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowersListView.swift; sourceTree = "<group>"; };
 		3079A6762A86E1C900278877 /* RegisterRowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRowersView.swift; sourceTree = "<group>"; };
 		3079A6782A884DC900278877 /* RowersRegisteredForEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowersRegisteredForEventView.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				3079A67D2A8AAF5700278877 /* AddNewRowerView.swift */,
-				3079A6702A8588F000278877 /* RoweView.swift */,
 				3079A6722A85890700278877 /* RowersListView.swift */,
 			);
 			path = RowersTab;
@@ -754,7 +751,6 @@
 				3007E5932A71974800BF568C /* EventRepository.swift in Sources */,
 				301208152A50C277009C9EAC /* EventView.swift in Sources */,
 				30C700E22A4A43DE00FD4ED5 /* AuthViewModel.swift in Sources */,
-				3079A6712A8588F000278877 /* RoweView.swift in Sources */,
 				3012080F2A50BEE7009C9EAC /* EventViewModel.swift in Sources */,
 				3079A6732A85890700278877 /* RowersListView.swift in Sources */,
 				30B30B192A79A95A00CB6D80 /* EventRepository+Injection.swift in Sources */,

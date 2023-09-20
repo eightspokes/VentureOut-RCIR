@@ -60,8 +60,8 @@ struct EventView: View {
                 }
                 .buttonStyle(.bordered)
                 
-                if authViewModel.currentUser != nil {
-                    if authViewModel.currentUser?.privilege == .admin {
+                if let user = authViewModel.currentUser  {
+                    if user.privileges.contains(.admin) {
                         HStack {
                             Button {
                                 showRegisterRowers = true

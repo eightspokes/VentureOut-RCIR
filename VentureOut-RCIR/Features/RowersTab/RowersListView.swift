@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RowersListView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    
     @State private var fetchedUsers: [User] = []
     @State private var showRegisterRowerView = false
     var body: some View {
@@ -24,7 +23,6 @@ struct RowersListView: View {
                         Text("Add new Rower")
                     }
                     .padding(.trailing)
-                   
                 }
                 
                 List {
@@ -37,28 +35,21 @@ struct RowersListView: View {
                                 Text(user.email)
                                     .font(.caption)
                             }
-                            
                         }
-                        
-                        
                     }
-                   
                 }
                 .navigationBarTitle("Rowers")
                 .font(.title2)
                 .onAppear {
                     fetchUsers()
-                
                 }
-                .sheet(isPresented: $showRegisterRowerView){
-                    
+                .sheet(isPresented: $showRegisterRowerView, onDismiss: {
+                    fetchUsers()
+                }){
                     RegistrationView(isAddingOtherRower: true)
                 }
             }
-            
-            
         }
-        
     }
     
     private func fetchUsers() {
@@ -67,8 +58,6 @@ struct RowersListView: View {
         }
     }
 }
-
-
 
 struct RowersListView_Previews: PreviewProvider {
     static var previews: some View {

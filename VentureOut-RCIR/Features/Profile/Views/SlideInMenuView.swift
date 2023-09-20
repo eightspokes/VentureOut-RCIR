@@ -23,7 +23,7 @@ struct SlideInMenuView: View {
                     }
                     Spacer()
                 }
-                PersonalInfo(image: "Roman", userName: authViewModel.currentUser?.fullName ?? "", email: authViewModel.currentUser?.email ?? "", privilege: authViewModel.currentUser?.privilege.stringValue() ?? "")
+                PersonalInfo(image: "Roman", userName: authViewModel.currentUser?.fullName ?? "", email: authViewModel.currentUser?.email ?? "", privilege: authViewModel.currentUser?.profilePrivilegesAsString ?? "")
                 
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack(spacing: 20) {
